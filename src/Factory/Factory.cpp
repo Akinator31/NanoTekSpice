@@ -5,11 +5,10 @@
 #include "Factory.h++"
 
 #include <algorithm>
-#include <iostream>
 
-#include "../Components/AndGate.h++"
-#include "../Components/Input.h++"
-#include "../Components/Out.h++"
+#include "Components/GatesComponents/AndGate.h++"
+#include "Components/SpecialComponents/Input.h++"
+#include "Components/SpecialComponents/Out.h++"
 
 namespace nts
 {

@@ -2,13 +2,15 @@
 // Created by pavel on 07/02/2026.
 //
 
+#include "Circuit.h++"
+
 #include <algorithm>
 #include <iostream>
 #include <vector>
 
 #include "IComponent.h++"
-#include "Components/Input.h++"
-#include "Components/Out.h++"
+#include "Components/SpecialComponents/Input.h++"
+#include "Components/SpecialComponents/Out.h++"
 
 namespace nts
 {
@@ -35,7 +37,7 @@ namespace nts
         }
     }
 
-    void Circuit::display()
+    void Circuit::display() const
     {
         std::vector<std::tuple<std::string, IComponent *>> inputs = {};
         std::vector<std::tuple<std::string, IComponent *>> outputs = {};

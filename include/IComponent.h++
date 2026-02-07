@@ -3,9 +3,7 @@
 //
 
 #pragma once
-#include <map>
 #include <memory>
-#include <string>
 
 namespace nts
 {
@@ -30,16 +28,5 @@ namespace nts
     {
         IComponent *component = nullptr;
         size_t pin = 0;
-    };
-
-    class Circuit
-    {
-        size_t _tick = 0;
-        std::pmr::map<std::string, std::unique_ptr<IComponent>> componentList= {};
-
-    public:
-        void simulate();
-        void display();
-        void add_component(const std::string& name, std::unique_ptr<IComponent> component);
     };
 }

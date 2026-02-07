@@ -4,8 +4,6 @@
 
 #include "Out.h++"
 
-#include <iostream>
-
 namespace nts
 {
     Tristate Out::getValue() const

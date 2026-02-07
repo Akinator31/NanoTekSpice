@@ -4,9 +4,6 @@
 
 #include "Input.h++"
 
-#include <iostream>
-
-
 namespace nts
 {
     Tristate Input::getValue() const

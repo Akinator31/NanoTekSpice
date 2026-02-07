@@ -201,6 +201,30 @@ src/Components/Input.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nanotekspice.dir/build.make CMakeFiles/nanotekspice.dir/src/Components/Input.cpp.s
 .PHONY : src/Components/Input.cpp.s
 
+src/Components/Out.o: src/Components/Out.cpp.o
+.PHONY : src/Components/Out.o
+
+# target to build an object file
+src/Components/Out.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nanotekspice.dir/build.make CMakeFiles/nanotekspice.dir/src/Components/Out.cpp.o
+.PHONY : src/Components/Out.cpp.o
+
+src/Components/Out.i: src/Components/Out.cpp.i
+.PHONY : src/Components/Out.i
+
+# target to preprocess a source file
+src/Components/Out.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nanotekspice.dir/build.make CMakeFiles/nanotekspice.dir/src/Components/Out.cpp.i
+.PHONY : src/Components/Out.cpp.i
+
+src/Components/Out.s: src/Components/Out.cpp.s
+.PHONY : src/Components/Out.s
+
+# target to generate assembly for a file
+src/Components/Out.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nanotekspice.dir/build.make CMakeFiles/nanotekspice.dir/src/Components/Out.cpp.s
+.PHONY : src/Components/Out.cpp.s
+
 src/Factory/Factory.o: src/Factory/Factory.cpp.o
 .PHONY : src/Factory/Factory.o
 
@@ -267,6 +291,9 @@ help:
 	@echo "... src/Components/Input.o"
 	@echo "... src/Components/Input.i"
 	@echo "... src/Components/Input.s"
+	@echo "... src/Components/Out.o"
+	@echo "... src/Components/Out.i"
+	@echo "... src/Components/Out.s"
 	@echo "... src/Factory/Factory.o"
 	@echo "... src/Factory/Factory.i"
 	@echo "... src/Factory/Factory.s"

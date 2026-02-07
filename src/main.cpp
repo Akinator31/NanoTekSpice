@@ -2,8 +2,9 @@
 // Created by pavel on 06/02/2026.
 //
 
-#include "../include/IComponent.h++"
-#include "Components/Input.h++"
+#include "IComponent.h++"
+#include "Circuit/Circuit.h++"
+#include "Components/SpecialComponents/Input.h++"
 #include "Factory/Factory.h++"
 
 int main()
