@@ -22,6 +22,10 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/FourBitsAdder.h++
         src/Components/GatesComponents/FourNorGates.cpp
         src/Components/GatesComponents/FourNorGates.h++
+        src/Parser/Parser.cpp
+        src/Parser/Parser.h++
+        src/Errors/NanoTekSpiceErrors.cpp
+        src/Errors/NanoTekSpiceErrors.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
