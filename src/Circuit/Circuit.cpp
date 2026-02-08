@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 #include "IComponent.h++"
@@ -39,6 +40,21 @@ namespace nts
                 pair.second->compute(0);
             }
         }
+    }
+
+    void Circuit::loop()
+    {
+        std::cout << "loop" << std::endl;
+    }
+
+    void Circuit::assign([[maybe_unused]] std::string& command)
+    {
+        std::cout << "assign" << std::endl;
+    }
+
+    void Circuit::exit()
+    {
+        std::exit(0);
     }
 
     void Circuit::display() const
@@ -86,8 +102,9 @@ namespace nts
         }
     }
 
-    void Circuit::add_link(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
-                           size_t componentToLinkPin)
+    void Circuit::addLink(const std::string& componentName, const size_t componentPin,
+                          const std::string& componentToLink,
+                          const size_t componentToLinkPin)
     {
         if (!this->componentList.contains(componentName) || !this->componentList.contains(componentToLink))
             throw NanoTekSpiceException(ComponentNameException);
@@ -95,5 +112,39 @@ namespace nts
                                                           componentToLinkPin);
         this->componentList[componentToLink].get()->setLink(componentToLinkPin, *this->componentList[componentName],
                                                             componentPin);
+    }
+
+    void Circuit::startCli()
+    {
+        std::string line;
+
+        std::cout << "> ";
+        while (getline(std::cin, line))
+        {
+            if (line == "exit")
+            {
+                exit();
+            }
+            if (line == "simulate")
+            {
+                simulate();
+                std::cout << "> ";
+                continue;
+            }
+            if (line == "display")
+            {
+                display();
+                std::cout << "> ";
+                continue;
+            }
+            if (line == "loop")
+            {
+                loop();
+                std::cout << "> ";
+                continue;
+            }
+            assign(line);
+            std::cout << "> ";
+        }
     }
 }

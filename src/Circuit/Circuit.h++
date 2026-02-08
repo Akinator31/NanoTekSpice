@@ -4,7 +4,9 @@
 
 #pragma once
 
+#include <functional>
 #include <map>
+#include <variant>
 
 #include "IComponent.h++"
 
@@ -32,6 +34,17 @@ namespace nts
         void display() const;
 
         /**
+         * Assign a value to an input.
+         * @param command The command
+         */
+        static void assign(std::string& command);
+
+        /**
+         * @brief Exit the program.
+         */
+        static void exit();
+
+        /**
          * @brief Add a component into the circuit.
          * @param name Name of the added component.
          * @param component The component to add.
@@ -46,7 +59,18 @@ namespace nts
          * @param componentToLink Name of the component to link.
          * @param componentToLinkPin The pin of the component to link.
          */
-        void add_link(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
-                      size_t componentToLinkPin);
+        void addLink(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
+                     size_t componentToLinkPin);
+
+        /**
+         * Simulate in loop.
+         */
+        static void loop();
+
+
+        /**
+         * Start the command line interface.
+         */
+        void startCli();
     };
 }

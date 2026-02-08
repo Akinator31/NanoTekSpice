@@ -13,11 +13,9 @@ int main(const int argc, char** argv)
     try
     {
         nts::Parser parser;
-        nts::Circuit new_circuit = parser.loadCircuit(argc, argv);
+        nts::Circuit circuit = parser.loadCircuit(argc, argv);
 
-        new_circuit.display();
-        new_circuit.simulate();
-        new_circuit.display();
+        circuit.startCli();
     }
     catch (std::exception& e)
     {
