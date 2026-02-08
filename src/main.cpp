@@ -8,15 +8,21 @@
 #include "Factory/Factory.h++"
 #include "Parser/Parser.h++"
 
-int main(const int argc, char **argv)
+int main(const int argc, char** argv)
 {
     try
     {
-        nts::Circuit new_circuit = nts::Parser::loadCircuit(argc, argv);
+        nts::Parser parser;
+        nts::Circuit new_circuit = parser.loadCircuit(argc, argv);
 
-    } catch (std::exception &e)
+        new_circuit.display();
+        new_circuit.simulate();
+        new_circuit.display();
+    }
+    catch (std::exception& e)
     {
         std::cerr << e.what() << std::endl;
+        return 84;
     }
 
     return 0;

@@ -16,7 +16,9 @@ namespace nts
     class Circuit
     {
         size_t _tick = 0; ///< Global tick of the circuit.
-        std::pmr::map<std::string, std::unique_ptr<IComponent>> componentList= {}; ///< Map that stored all components of the circuit.
+
+        ///< Map that stored all components of the circuit.
+        std::map<std::string, std::unique_ptr<IComponent>> componentList = {};
 
     public:
         /**
@@ -33,7 +35,18 @@ namespace nts
          * @brief Add a component into the circuit.
          * @param name Name of the added component.
          * @param component The component to add.
+         * @return True if the component has been added. False otherwise.
          */
-        void add_component(const std::string& name, std::unique_ptr<IComponent> component);
+        bool add_component(const std::string& name, std::unique_ptr<IComponent> component);
+
+        /**
+         * @brief Link a pin component to another.
+         * @param componentName Name of the component.
+         * @param componentPin The pin of the component.
+         * @param componentToLink Name of the component to link.
+         * @param componentToLinkPin The pin of the component to link.
+         */
+        void add_link(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
+                      size_t componentToLinkPin);
     };
 }

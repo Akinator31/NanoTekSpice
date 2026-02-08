@@ -2,3 +2,5 @@ cmake-build-debug/
 .cmake/
 .idea/
 CMakeFiles/
+test.nts
+vgcore*
