@@ -7,6 +7,9 @@
 
 namespace nts
 {
+    /**
+     * @brief Enum that defined states of a component's pin.
+     */
     enum Tristate
     {
         Undefined = -1,
@@ -14,6 +17,9 @@ namespace nts
         False = false
     };
 
+    /**
+     * @brief Interface for all components.
+     */
     class IComponent
     {
     public:
@@ -24,6 +30,9 @@ namespace nts
         virtual void setLink(size_t pin, IComponent &other, size_t otherPin) = 0;
     };
 
+    /**
+     * @brief Struct for describe a linked component.
+     */
     struct ComponentLink
     {
         IComponent *component = nullptr;

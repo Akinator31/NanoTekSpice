@@ -6,7 +6,7 @@
 
 #include <algorithm>
 
-#include "Components/GatesComponents/AndGate.h++"
+#include "Components/ElementaryComponents/AndGate.h++"
 #include "Components/SpecialComponents/Input.h++"
 #include "Components/SpecialComponents/Out.h++"
 

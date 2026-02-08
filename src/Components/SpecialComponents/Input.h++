@@ -16,6 +16,8 @@ namespace nts
      */
     class Input: public IComponent
     {
+        ///< Why there are 2 state wtf ??? Because we want to set the value of an Input when we simulate the program,
+        /// not when the user set it via the `input=value` command.
         Tristate _currentState = Undefined; ///< Current state of the Input component (used by the compute function)
         Tristate _nextState = Undefined; ///< Next state of the Input component (used by the simulate function)
 
@@ -36,22 +38,23 @@ namespace nts
 
         /**
          * @brief Simulate a tick of an Input component
-         * @param tick The global tick of the circuit (@see nts::Circuit)
+         * @param tick The global tick of the circuit
+         * @see nts::Circuit
          */
         void simulate(size_t tick) override;
 
         /**
          * @brief Compute the result on the selected pin. Here, compute always return this->_currentState.
          * @param pin Pin to know which 'interior component' computes the result. Useless here because Input component has only one pin.
-         * @return nts::Tristate The computed result so here, just this->_currentState.
+         * @return nts::Tristate The computed result, so here, just this->_currentState.
          */
         Tristate compute(size_t pin) override;
 
         /**
          * @brief Link a pin of an other component. Useless here cause Input component is always linked to standard input (see la_fonction_qui_change_la_valeur_d'un_input)
          * @param pin Pin of the Input component.
-         * @param other Component to link
-         * @param otherPin Pin of the component to link
+         * @param other Component to linked
+         * @param otherPin Pin of the component to linked
          */
         void setLink(size_t pin, IComponent& other, size_t otherPin) override;
     };

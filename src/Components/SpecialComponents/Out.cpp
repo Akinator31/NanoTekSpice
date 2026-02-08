@@ -22,9 +22,8 @@ namespace nts
         return this->_currentState;
     }
 
-    void Out::setLink(const size_t pin, IComponent& other, const size_t otherPin)
+    void Out::setLink([[maybe_unused]] const size_t pin, IComponent& other, const size_t otherPin)
     {
-        this->_pin = pin;
         this->_link = {
             .component = &other,
             .pin = otherPin
