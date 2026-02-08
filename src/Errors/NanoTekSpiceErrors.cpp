@@ -6,23 +6,13 @@
 
 namespace nts
 {
-    NoFileException::NoFileException()
+    NanoTekSpiceException::NanoTekSpiceException(const ErrorType type)
     {
-        this->_message = "No file was given as parameter!";
+        this->_error = this->_error_map[type];
     }
 
-    const char* NoFileException::what() const noexcept
+    const char* NanoTekSpiceException::what() const noexcept
     {
-        return this->_message.c_str();
-    }
-
-    TooMuchArgumentsException::TooMuchArgumentsException()
-    {
-        this->_message = "Too much arguments was given as parameters!";
-    }
-
-    const char* TooMuchArgumentsException::what() const noexcept
-    {
-        return this->_message.c_str();
+        return this->_error.c_str();
     }
 }

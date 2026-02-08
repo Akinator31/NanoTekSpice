@@ -4,25 +4,28 @@
 
 #pragma once
 #include <exception>
+#include <map>
 #include <string>
 
 namespace nts
 {
-    class NoFileException : public std::exception
+    enum ErrorType
     {
-        std::string _message;
-
-    public:
-        NoFileException();
-        [[nodiscard]] const char* what() const noexcept override;
+        NoFileException,
+        TooMuchArguments,
     };
 
-    class TooMuchArgumentsException : public std::exception
+    class NanoTekSpiceException : public std::exception
     {
-        std::string _message;
+        std::map<ErrorType, std::string> _error_map = {
+            { NoFileException, "No file was given as parameter!" },
+            { TooMuchArguments, "Too much arguments was given as parameters!" },
+        };
+
+        std::string _error;
 
     public:
-        TooMuchArgumentsException();
+        explicit NanoTekSpiceException(ErrorType type);
         [[nodiscard]] const char* what() const noexcept override;
     };
 }

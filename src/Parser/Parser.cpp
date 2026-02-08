@@ -11,9 +11,9 @@ namespace nts
     Circuit Parser::loadCircuit(const int argc, [[maybe_unused]] char** argv)
     {
         if (argc < 2)
-            throw NoFileException();
+            throw NanoTekSpiceException(NoFileException);
         if (argc > 2)
-            throw TooMuchArgumentsException();
+            throw NanoTekSpiceException(TooMuchArguments);
         return Circuit {};
     }
 }
