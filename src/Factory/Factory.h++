@@ -9,6 +9,9 @@
 #include <string>
 
 #include "IComponent.h++"
+#include "Components/ElementaryComponents/AndGate.h++"
+#include "Components/SpecialComponents/Input.h++"
+#include "Components/SpecialComponents/Out.h++"
 
 namespace nts
 {
@@ -17,20 +20,21 @@ namespace nts
      */
     class Factory
     {
-        std::map<std::string, std::function<std::unique_ptr<IComponent> ()>> _builder = {}; ///< The map that stored component constructor functions
+        ///< The map that stored component constructor functions
+        std::map<std::string, std::function<std::unique_ptr<IComponent> ()>> _builder = {
+            {"and", []() { return std::make_unique<AndGate>(); }},
+            {"input", []() { return std::make_unique<Input>(); }},
+            {"output", []() { return std::make_unique<Out>(); }},
+        };
 
     public:
-        /**
-         * @brief Factory constructor. Initialize the map of components constructor functions.
-         */
-        Factory();
-
+        Factory() = default;
         /**
          *
          * @param type The of the component we want to create.
          * @throw std::exception Throw an exception if the type of the component given as parameter isn't support by the program.
          * @return std::unique_ptr<IComponent> The component newly created.
          */
-        std::unique_ptr<IComponent> createComponent(const std::string &type);
+        std::unique_ptr<IComponent> createComponent(const std::string& type);
     };
 }
