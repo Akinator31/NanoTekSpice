@@ -13,7 +13,6 @@ namespace nts
 
     void Out::simulate([[maybe_unused]] size_t tick)
     {
-
     }
 
     Tristate Out::compute([[maybe_unused]] size_t pin)

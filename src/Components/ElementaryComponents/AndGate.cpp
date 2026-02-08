@@ -25,8 +25,6 @@ namespace nts
 
             this->_prevValue = computeAndOperation(value1, value2);
 
-            std::cout << "Value : " << this->_prevValue << std::endl;
-
             this->_lastComputedTick = this->_lastSimulatedTick;
             return this->_prevValue;
         }
@@ -43,10 +41,14 @@ namespace nts
     {
         if (first == true && second == true)
             return True;
+        if (first == Undefined && second == Undefined)
+            return Undefined;
         if (first == true || second == true)
         {
             if (first == Undefined || second == Undefined)
+            {
                 return Undefined;
+            }
             return False;
         }
         return False;
