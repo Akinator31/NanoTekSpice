@@ -17,6 +17,10 @@ namespace nts
         NoFileException,
         TooMuchArgumentsException,
         FileOpenException,
+        SyntaxFileException,
+        ComponentTypeException,
+        ComponentAlreadyExistException,
+        ComponentNameException,
     };
 
     /**
@@ -29,6 +33,10 @@ namespace nts
             {NoFileException, "No file was given as parameter!"},
             {TooMuchArgumentsException, "Too much arguments was given as parameters!"},
             {FileOpenException, "Impossible to open the given file!"},
+            {SyntaxFileException, "The circuit file includes one or several lexical or syntactic errors!"},
+            {ComponentTypeException, "A component type is unknown!"},
+            {ComponentAlreadyExistException, "Several components share the same name!"},
+            {ComponentNameException, "A component name is unknown!"}
         };
 
         ///< String that represent the exception

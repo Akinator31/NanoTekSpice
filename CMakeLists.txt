@@ -26,6 +26,10 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Parser/Parser.h++
         src/Errors/NanoTekSpiceErrors.cpp
         src/Errors/NanoTekSpiceErrors.h++
+        src/Utils/Utils.cpp
+        src/Utils/Utils.h++
+        src/Parser/Chipset.cpp
+        src/Parser/Link.cpp
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
