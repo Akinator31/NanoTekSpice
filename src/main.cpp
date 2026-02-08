@@ -15,7 +15,7 @@ int main()
     std::unique_ptr<nts::IComponent> input1 = factory.createComponent("input");
     std::unique_ptr<nts::IComponent> input2 = factory.createComponent("input");
     std::unique_ptr<nts::IComponent> and_gate = factory.createComponent("and");
-    std::unique_ptr<nts::IComponent> out = factory.createComponent("out");
+    std::unique_ptr<nts::IComponent> out = factory.createComponent("output");
 
     auto& inp1 = dynamic_cast<nts::Input&>(*input1);
     inp1.setValue(nts::True);
