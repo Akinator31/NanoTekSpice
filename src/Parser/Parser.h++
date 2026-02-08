@@ -12,6 +12,6 @@ namespace nts
     class Parser
     {
     public:
-        static Circuit loadCircuit(int argc, char **argv);
+        static Circuit loadCircuit(int argc, char** argv);
     };
 }
