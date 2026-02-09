@@ -38,4 +38,6 @@ namespace nts
          */
         static Tristate stringToTristate(const std::string& value);
     };
+
+    Tristate operator!(Tristate value);
 }

@@ -47,4 +47,13 @@ namespace nts
             throw NanoTekSpiceException(InvalidValue);
         return tristateString[value];
     }
+
+    Tristate operator!(const Tristate value)
+    {
+        if (value == False)
+            return True;
+        if (value == True)
+            return False;
+        return Undefined;
+    }
 }
