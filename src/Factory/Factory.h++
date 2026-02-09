@@ -8,26 +8,26 @@
 #include <memory>
 #include <string>
 
-#include "IComponent.h++"
 #include "Components/ElementaryComponents/AndGate.h++"
+#include "Components/ElementaryComponents/OrGate.h++"
 #include "Components/SpecialComponents/Input.h++"
 #include "Components/SpecialComponents/Out.h++"
+#include "IComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @brief Factory class for create components
      */
-    class Factory
-    {
+    class Factory {
         ///< The map that stored component constructor functions
-        std::map<std::string, std::function<std::unique_ptr<IComponent> ()>> _builder = {
+        std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
             {"and", []() { return std::make_unique<AndGate>(); }},
+            {"or", []() { return std::make_unique<OrGate>(); }},
             {"input", []() { return std::make_unique<Input>(); }},
             {"output", []() { return std::make_unique<Out>(); }},
         };
 
-    public:
+      public:
         Factory() = default;
         /**
          *
