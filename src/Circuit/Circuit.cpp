@@ -21,7 +21,7 @@ namespace nts
     {
         this->_circuitFuncs["exit"] = [](std::string &command) { exit(command); };
         this->_circuitFuncs["simulate"] = [this](std::string &command) { simulate(command); };
-        this->_circuitFuncs["loop"] = [](std::string &command) { loop(command); };
+        this->_circuitFuncs["loop"] = [this](std::string &command) { loop(command); };
         this->_circuitFuncs["display"] = [this](std::string &command) { display(command); };
         this->_circuitFuncs["assign"] = [this](const std::string &command) { assign(command); };
     }
@@ -52,9 +52,13 @@ namespace nts
         }
     }
 
-    void Circuit::loop([[maybe_unused]] std::string &command)
+    [[noreturn]] void Circuit::loop(std::string &command)
     {
-        std::cout << "loop" << std::endl;
+        while (true)
+        {
+            this->simulate(command);
+            this->display(command);
+        }
     }
 
     void Circuit::assign(const std::string& command)

@@ -65,7 +65,7 @@ namespace nts
         /**
          * Simulate in loop.
          */
-        static void loop(std::string &command);
+        [[noreturn]] void loop(std::string &command);
 
         /**
          * Start the command line interface.
