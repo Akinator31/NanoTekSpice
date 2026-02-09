@@ -3,6 +3,7 @@
 //
 
 #include "Out.h++"
+#include "Errors/NanoTekSpiceErrors.h++"
 
 namespace nts
 {
@@ -21,8 +22,11 @@ namespace nts
         return this->_currentState;
     }
 
-    void Out::setLink([[maybe_unused]] const size_t pin, IComponent& other, const size_t otherPin)
+    void Out::setLink(const size_t pin, IComponent& other, const size_t otherPin)
     {
+        if (pin != 1)
+            throw NanoTekSpiceException(SyntaxFileException);
+
         this->_link = {
             .component = &other,
             .pin = otherPin

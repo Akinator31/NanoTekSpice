@@ -14,7 +14,7 @@ namespace nts
      * @details This class inherit from IComponent interface
      * @see IComponent
      */
-    class Input: public IComponent
+    class Input : public IComponent
     {
         ///< Why there are 2 state wtf ??? Because we want to set the value of an Input when we simulate the program,
         /// not when the user set it via the `input=value` command.
@@ -51,7 +51,7 @@ namespace nts
         Tristate compute(size_t pin) override;
 
         /**
-         * @brief Link a pin of an other component. Useless here cause Input component is always linked to standard input (see la_fonction_qui_change_la_valeur_d'un_input)
+         * @brief Link a pin of another component. Useless here cause Input component is always linked to standard input (@see Circuit::assign())
          * @param pin Pin of the Input component.
          * @param other Component to linked
          * @param otherPin Pin of the component to linked
