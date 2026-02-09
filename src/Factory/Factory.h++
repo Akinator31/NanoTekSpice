@@ -8,26 +8,34 @@
 #include <memory>
 #include <string>
 
+#include "IComponent.h++"
 #include "Components/ElementaryComponents/AndGate.h++"
 #include "Components/ElementaryComponents/OrGate.h++"
+#include "Components/SpecialComponents/Clock.h++"
 #include "Components/SpecialComponents/Input.h++"
 #include "Components/SpecialComponents/Out.h++"
-#include "IComponent.h++"
+#include "Components/SpecialComponents/True.h++"
+#include "Components/SpecialComponents/False.h++"
 
-namespace nts {
+namespace nts
+{
     /**
      * @brief Factory class for create components
      */
-    class Factory {
+    class Factory
+    {
         ///< The map that stored component constructor functions
-        std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
+        std::map<std::string, std::function<std::unique_ptr<IComponent> ()>> _builder = {
+            {"input", []() { return std::make_unique<Input>(); }},
+            {"clock", []() { return std::make_unique<Clock>(); }},
+            {"true", []() { return std::make_unique<class True>(); }},
+            {"false", []() { return std::make_unique<class False>(); }},
+            {"output", []() { return std::make_unique<Out>(); }},
             {"and", []() { return std::make_unique<AndGate>(); }},
             {"or", []() { return std::make_unique<OrGate>(); }},
-            {"input", []() { return std::make_unique<Input>(); }},
-            {"output", []() { return std::make_unique<Out>(); }},
         };
 
-      public:
+    public:
         Factory() = default;
         /**
          *
