@@ -21,6 +21,7 @@ namespace nts
         ComponentTypeException,
         ComponentAlreadyExistException,
         ComponentNameException,
+        InvalidValue
     };
 
     /**
@@ -36,7 +37,8 @@ namespace nts
             {SyntaxFileException, "The circuit file includes one or several lexical or syntactic errors!"},
             {ComponentTypeException, "A component type is unknown!"},
             {ComponentAlreadyExistException, "Several components share the same name!"},
-            {ComponentNameException, "A component name is unknown!"}
+            {ComponentNameException, "A component name is unknown!"},
+            {InvalidValue, "Invalid value when using input=value command!"}
         };
 
         ///< String that represent the exception

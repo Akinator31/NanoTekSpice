@@ -3,7 +3,10 @@
 //
 
 #pragma once
+#include <map>
 #include <string>
+
+#include "IComponent.h++"
 
 
 namespace nts
@@ -27,5 +30,12 @@ namespace nts
          * @return bool The result of the check.
          */
         static bool is_valid_whitespace(const std::string& to_check);
+
+        /**
+         * Convert a string tristate to real tristate
+         * @param value String that contain the tristate to be parsed
+         * @return The parsed tristate
+         */
+        static Tristate stringToTristate(const std::string& value);
     };
 }

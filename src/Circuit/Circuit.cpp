@@ -13,6 +13,7 @@
 #include "Components/SpecialComponents/Input.h++"
 #include "Components/SpecialComponents/Out.h++"
 #include "Errors/NanoTekSpiceErrors.h++"
+#include "Utils/Utils.h++"
 
 namespace nts
 {
@@ -22,14 +23,14 @@ namespace nts
         this->_circuitFuncs["simulate"] = [this](std::string &command) { simulate(command); };
         this->_circuitFuncs["loop"] = [](std::string &command) { loop(command); };
         this->_circuitFuncs["display"] = [this](std::string &command) { display(command); };
-        this->_circuitFuncs["assign"] = [](std::string &command) { assign(command); };
+        this->_circuitFuncs["assign"] = [this](const std::string &command) { assign(command); };
     }
 
     bool Circuit::addComponent(const std::string& name, std::unique_ptr<IComponent> component)
     {
-        if (this->componentList.contains(name))
+        if (this->_componentList.contains(name))
             return false;
-        this->componentList[name] = std::move(component);
+        this->_componentList[name] = std::move(component);
         return true;
     }
 
@@ -37,12 +38,12 @@ namespace nts
     {
         this->_tick += 1;
 
-        for (const auto& pair : this->componentList)
+        for (const auto& pair : this->_componentList)
         {
             pair.second->simulate(this->_tick);
         }
 
-        for (const auto& pair : this->componentList)
+        for (const auto& pair : this->_componentList)
         {
             if (pair.first == "out")
             {
@@ -56,9 +57,34 @@ namespace nts
         std::cout << "loop" << std::endl;
     }
 
-    void Circuit::assign([[maybe_unused]] std::string& command)
+    void Circuit::assign(const std::string& command)
     {
-        std::cout << "assign" << std::endl;
+        std::string segment;
+        std::stringstream commandString(command);
+
+        std::string inputName;
+        std::string value;
+
+        while (getline(commandString, segment, '='))
+        {
+            if (inputName.empty())
+            {
+                inputName = segment;
+                continue;
+            }
+            if (value.empty())
+            {
+                value = segment;
+            }
+        }
+
+        if (inputName.empty() || value.empty())
+            return;
+
+        if (!this->_componentList.contains(inputName) || !dynamic_cast<Input *>(this->_componentList[inputName].get()))
+            throw NanoTekSpiceException(ComponentNameException);
+
+        dynamic_cast<Input *>(this->_componentList[inputName].get())->setValue(Utils::stringToTristate(value));
     }
 
     void Circuit::exit([[maybe_unused]] std::string &command)
@@ -71,7 +97,7 @@ namespace nts
         std::vector<std::tuple<std::string, IComponent*>> inputs = {};
         std::vector<std::tuple<std::string, IComponent*>> outputs = {};
 
-        for (const auto& pair : this->componentList)
+        for (const auto& pair : this->_componentList)
         {
             if (dynamic_cast<Input*>(pair.second.get()))
             {
@@ -121,11 +147,11 @@ namespace nts
                           const std::string& componentToLink,
                           const size_t componentToLinkPin)
     {
-        if (!this->componentList.contains(componentName) || !this->componentList.contains(componentToLink))
+        if (!this->_componentList.contains(componentName) || !this->_componentList.contains(componentToLink))
             throw NanoTekSpiceException(ComponentNameException);
-        this->componentList[componentName].get()->setLink(componentPin, *this->componentList[componentToLink],
+        this->_componentList[componentName].get()->setLink(componentPin, *this->_componentList[componentToLink],
                                                           componentToLinkPin);
-        this->componentList[componentToLink].get()->setLink(componentToLinkPin, *this->componentList[componentName],
+        this->_componentList[componentToLink].get()->setLink(componentToLinkPin, *this->_componentList[componentName],
                                                             componentPin);
     }
 
@@ -139,7 +165,7 @@ namespace nts
             if (this->_circuitFuncs.contains(line))
             {
                 this->_circuitFuncs[line](line);
-            } else
+            } else if (line.find('=') != std::string::npos)
             {
                 this->_circuitFuncs["assign"](line);
             }
