@@ -30,7 +30,13 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Utils/Utils.h++
         src/Parser/Chipset.cpp
         src/Parser/Link.cpp
+        src/Components/SpecialComponents/True.cpp
+        src/Components/SpecialComponents/True.h++
+        src/Components/SpecialComponents/False.cpp
+        src/Components/SpecialComponents/False.h++
+        src/Components/SpecialComponents/Clock.cpp
+        src/Components/SpecialComponents/Clock.h++
 )
 
-target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
+target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror -g3)
 target_include_directories(nanotekspice PRIVATE include src)

@@ -6,7 +6,7 @@
 
 #include <functional>
 #include <map>
-#include <variant>
+#include <typeindex>
 
 #include "IComponent.h++"
 
@@ -26,12 +26,12 @@ namespace nts
         /**
          * @brief Simulate a tick of the circuit.
          */
-        void simulate(std::string &command);
+        void simulate(std::string& command);
 
         /**
          * @brief Prints the current tick and the value of all inputs and outputs on the standard output, each sorted by name in ASCII order.
          */
-        void display(std::string &command) const;
+        void display(std::string& command);
 
         /**
          * Assign a value to an input.
@@ -42,7 +42,7 @@ namespace nts
         /**
          * @brief Exit the program.
          */
-        static void exit(std::string &command);
+        void exit(std::string& command);
 
         /**
          * @brief Add a component into the circuit.
@@ -65,7 +65,7 @@ namespace nts
         /**
          * Simulate in loop.
          */
-        [[noreturn]] void loop(std::string &command);
+        [[noreturn]] void loop(std::string& command);
 
         /**
          * Start the command line interface.
@@ -75,10 +75,16 @@ namespace nts
     private:
         size_t _tick = 0; ///< Global tick of the circuit.
 
+        ///< Bool that tell the program to quit when exit cli function is called.
+        bool _cliDoesExit = false;
+
         ///< Map that stored all components of the circuit.
         std::map<std::string, std::unique_ptr<IComponent>> _componentList = {};
 
         ///< Map that stored CLI functions.
-        std::map<std::string, std::function<void (std::string &)>> _circuitFuncs = {};
+        std::map<std::string, std::function<void (std::string&)>> _circuitFuncs = {};
+
+        ///< Map that stored display functions.
+        std::map<std::type_index, std::function<void (IComponent*, const std::string&)>> _displayFuncs;
     };
 }

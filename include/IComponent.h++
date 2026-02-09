@@ -27,7 +27,7 @@ namespace nts
 
         virtual void simulate(size_t tick) = 0;
         virtual Tristate compute(size_t pin) = 0;
-        virtual void setLink(size_t pin, IComponent &other, size_t otherPin) = 0;
+        virtual void setLink(size_t pin, IComponent& other, size_t otherPin) = 0;
     };
 
     /**
@@ -35,7 +35,7 @@ namespace nts
      */
     struct ComponentLink
     {
-        IComponent *component = nullptr;
+        IComponent* component = nullptr;
         size_t pin = 0;
     };
 }

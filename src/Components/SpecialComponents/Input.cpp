@@ -3,6 +3,7 @@
 //
 
 #include "Input.h++"
+#include "Errors/NanoTekSpiceErrors.h++"
 
 namespace nts
 {
@@ -26,8 +27,10 @@ namespace nts
         return this->_currentState;
     }
 
-    void Input::setLink([[maybe_unused]] size_t pin, [[maybe_unused]] IComponent& other, [[maybe_unused]] size_t otherPin)
+    void Input::setLink(const size_t pin, [[maybe_unused]] IComponent& other,
+                        [[maybe_unused]] size_t otherPin)
     {
-
+        if (pin != 1)
+            throw NanoTekSpiceException(SyntaxFileException);
     }
 }
