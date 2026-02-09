@@ -98,16 +98,22 @@ namespace nts
 
         for (const auto& pair : inputs)
         {
-            std::cout << "  " << std::get<0>(pair) << ": " << dynamic_cast<Input*>(std::get<1>(pair))->getValue() <<
-                std::endl;
+            if (const Tristate state = dynamic_cast<Input*>(std::get<1>(pair))->getValue(); state == -1)
+                std::cout << "  " << std::get<0>(pair) << ": U" << std::endl;
+            else
+                std::cout << "  " << std::get<0>(pair) << ": " << dynamic_cast<Input*>(std::get<1>(pair))->getValue() <<
+                    std::endl;
         }
 
         std::cout << "output(s):" << std::endl;
 
         for (const auto& pair : outputs)
         {
-            std::cout << "  " << std::get<0>(pair) << ": " << dynamic_cast<Out*>(std::get<1>(pair))->getValue() <<
-                std::endl;
+            if (const Tristate state = dynamic_cast<Out*>(std::get<1>(pair))->getValue(); state == -1)
+                std::cout << "  " << std::get<0>(pair) << ": U" << std::endl;
+            else
+                std::cout << "  " << std::get<0>(pair) << ": " << dynamic_cast<Out*>(std::get<1>(pair))->getValue() <<
+                    std::endl;
         }
     }
 
