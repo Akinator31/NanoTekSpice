@@ -4,6 +4,10 @@
 
 #include "Utils.h++"
 
+#include <iostream>
+
+#include "Errors/NanoTekSpiceErrors.h++"
+
 namespace nts
 {
     std::string Utils::trim(const std::string& to_clean)
@@ -29,5 +33,18 @@ namespace nts
             return false;
         }
         return true;
+    }
+
+    Tristate Utils::stringToTristate(const std::string& value)
+    {
+        std::map<std::string, Tristate> tristateString = {
+            {"0", False},
+            {"1", True},
+            {"-1", Undefined},
+        };
+
+        if (!tristateString.contains(value))
+            throw NanoTekSpiceException(InvalidValue);
+        return tristateString[value];
     }
 }
