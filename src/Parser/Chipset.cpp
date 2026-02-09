@@ -52,7 +52,7 @@ namespace nts
         if (component == nullptr)
             throw NanoTekSpiceException(ComponentTypeException);
 
-        if (!circuit.add_component(chipsetName, std::move(component)))
+        if (!circuit.addComponent(chipsetName, std::move(component)))
             throw NanoTekSpiceException(ComponentAlreadyExistException);
     }
 }

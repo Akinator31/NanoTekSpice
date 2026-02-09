@@ -13,25 +13,25 @@
 namespace nts
 {
     /**
-     * @brief Circuit class to orchestrate all components
+     * @brief Circuit class to orchestrate all components.
      */
     class Circuit
     {
-        size_t _tick = 0; ///< Global tick of the circuit.
-
-        ///< Map that stored all components of the circuit.
-        std::map<std::string, std::unique_ptr<IComponent>> componentList = {};
-
     public:
+        /**
+         * Circuit constructor.
+         */
+        Circuit();
+
         /**
          * @brief Simulate a tick of the circuit.
          */
-        void simulate();
+        void simulate(std::string &command);
 
         /**
          * @brief Prints the current tick and the value of all inputs and outputs on the standard output, each sorted by name in ASCII order.
          */
-        void display() const;
+        void display(std::string &command) const;
 
         /**
          * Assign a value to an input.
@@ -42,7 +42,7 @@ namespace nts
         /**
          * @brief Exit the program.
          */
-        static void exit();
+        static void exit(std::string &command);
 
         /**
          * @brief Add a component into the circuit.
@@ -50,7 +50,7 @@ namespace nts
          * @param component The component to add.
          * @return True if the component has been added. False otherwise.
          */
-        bool add_component(const std::string& name, std::unique_ptr<IComponent> component);
+        bool addComponent(const std::string& name, std::unique_ptr<IComponent> component);
 
         /**
          * @brief Link a pin component to another.
@@ -65,12 +65,20 @@ namespace nts
         /**
          * Simulate in loop.
          */
-        static void loop();
-
+        static void loop(std::string &command);
 
         /**
          * Start the command line interface.
          */
         void startCli();
+
+    private:
+        size_t _tick = 0; ///< Global tick of the circuit.
+
+        ///< Map that stored all components of the circuit.
+        std::map<std::string, std::unique_ptr<IComponent>> componentList = {};
+
+        ///< Map that stored CLI functions.
+        std::map<std::string, std::function<void (std::string &)>> _circuitFuncs = {};
     };
 }

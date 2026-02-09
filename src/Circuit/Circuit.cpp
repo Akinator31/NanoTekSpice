@@ -16,7 +16,16 @@
 
 namespace nts
 {
-    bool Circuit::add_component(const std::string& name, std::unique_ptr<IComponent> component)
+    Circuit::Circuit()
+    {
+        this->_circuitFuncs["exit"] = [](std::string &command) { exit(command); };
+        this->_circuitFuncs["simulate"] = [this](std::string &command) { simulate(command); };
+        this->_circuitFuncs["loop"] = [](std::string &command) { loop(command); };
+        this->_circuitFuncs["display"] = [this](std::string &command) { display(command); };
+        this->_circuitFuncs["assign"] = [](std::string &command) { assign(command); };
+    }
+
+    bool Circuit::addComponent(const std::string& name, std::unique_ptr<IComponent> component)
     {
         if (this->componentList.contains(name))
             return false;
@@ -24,7 +33,7 @@ namespace nts
         return true;
     }
 
-    void Circuit::simulate()
+    void Circuit::simulate([[maybe_unused]] std::string &command)
     {
         this->_tick += 1;
 
@@ -42,7 +51,7 @@ namespace nts
         }
     }
 
-    void Circuit::loop()
+    void Circuit::loop([[maybe_unused]] std::string &command)
     {
         std::cout << "loop" << std::endl;
     }
@@ -52,12 +61,12 @@ namespace nts
         std::cout << "assign" << std::endl;
     }
 
-    void Circuit::exit()
+    void Circuit::exit([[maybe_unused]] std::string &command)
     {
         std::exit(0);
     }
 
-    void Circuit::display() const
+    void Circuit::display([[maybe_unused]] std::string &command) const
     {
         std::vector<std::tuple<std::string, IComponent*>> inputs = {};
         std::vector<std::tuple<std::string, IComponent*>> outputs = {};
@@ -121,29 +130,13 @@ namespace nts
         std::cout << "> ";
         while (getline(std::cin, line))
         {
-            if (line == "exit")
+            if (this->_circuitFuncs.contains(line))
             {
-                exit();
-            }
-            if (line == "simulate")
+                this->_circuitFuncs[line](line);
+            } else
             {
-                simulate();
-                std::cout << "> ";
-                continue;
+                this->_circuitFuncs["assign"](line);
             }
-            if (line == "display")
-            {
-                display();
-                std::cout << "> ";
-                continue;
-            }
-            if (line == "loop")
-            {
-                loop();
-                std::cout << "> ";
-                continue;
-            }
-            assign(line);
             std::cout << "> ";
         }
     }
