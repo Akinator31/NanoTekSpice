@@ -194,7 +194,7 @@ namespace nts
         std::string line;
 
         std::cout << "> ";
-        while (!this->_cliDoesExit && getline(std::cin, line))
+        while (getline(std::cin, line))
         {
             if (this->_circuitFuncs.contains(line))
             {
@@ -204,6 +204,8 @@ namespace nts
             {
                 this->_circuitFuncs["assign"](line);
             }
+            if (this->_cliDoesExit)
+                break;
             std::cout << "> ";
         }
     }
