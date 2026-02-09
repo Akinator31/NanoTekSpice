@@ -37,7 +37,7 @@ namespace nts
          * Assign a value to an input.
          * @param command The command
          */
-        static void assign(std::string& command);
+        void assign(const std::string& command);
 
         /**
          * @brief Exit the program.
@@ -76,7 +76,7 @@ namespace nts
         size_t _tick = 0; ///< Global tick of the circuit.
 
         ///< Map that stored all components of the circuit.
-        std::map<std::string, std::unique_ptr<IComponent>> componentList = {};
+        std::map<std::string, std::unique_ptr<IComponent>> _componentList = {};
 
         ///< Map that stored CLI functions.
         std::map<std::string, std::function<void (std::string &)>> _circuitFuncs = {};
