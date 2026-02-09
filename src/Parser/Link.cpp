@@ -58,7 +58,7 @@ namespace nts
             throw NanoTekSpiceException(SyntaxFileException);
         }
 
-        circuit.add_link(firstComponentParts[0], firstComponentPin, secondComponentParts[0], secondComponentPin);
+        circuit.addLink(firstComponentParts[0], firstComponentPin, secondComponentParts[0], secondComponentPin);
     }
 
     void Parser::parseLinks([[maybe_unused]] Circuit& circuit, std::string& line)

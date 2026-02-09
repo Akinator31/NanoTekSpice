@@ -4,32 +4,45 @@
 
 #pragma once
 
+#include <functional>
 #include <map>
+#include <variant>
 
 #include "IComponent.h++"
 
 namespace nts
 {
     /**
-     * @brief Circuit class to orchestrate all components
+     * @brief Circuit class to orchestrate all components.
      */
     class Circuit
     {
-        size_t _tick = 0; ///< Global tick of the circuit.
-
-        ///< Map that stored all components of the circuit.
-        std::map<std::string, std::unique_ptr<IComponent>> componentList = {};
-
     public:
+        /**
+         * Circuit constructor.
+         */
+        Circuit();
+
         /**
          * @brief Simulate a tick of the circuit.
          */
-        void simulate();
+        void simulate(std::string &command);
 
         /**
          * @brief Prints the current tick and the value of all inputs and outputs on the standard output, each sorted by name in ASCII order.
          */
-        void display() const;
+        void display(std::string &command) const;
+
+        /**
+         * Assign a value to an input.
+         * @param command The command
+         */
+        static void assign(std::string& command);
+
+        /**
+         * @brief Exit the program.
+         */
+        static void exit(std::string &command);
 
         /**
          * @brief Add a component into the circuit.
@@ -37,7 +50,7 @@ namespace nts
          * @param component The component to add.
          * @return True if the component has been added. False otherwise.
          */
-        bool add_component(const std::string& name, std::unique_ptr<IComponent> component);
+        bool addComponent(const std::string& name, std::unique_ptr<IComponent> component);
 
         /**
          * @brief Link a pin component to another.
@@ -46,7 +59,26 @@ namespace nts
          * @param componentToLink Name of the component to link.
          * @param componentToLinkPin The pin of the component to link.
          */
-        void add_link(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
-                      size_t componentToLinkPin);
+        void addLink(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
+                     size_t componentToLinkPin);
+
+        /**
+         * Simulate in loop.
+         */
+        static void loop(std::string &command);
+
+        /**
+         * Start the command line interface.
+         */
+        void startCli();
+
+    private:
+        size_t _tick = 0; ///< Global tick of the circuit.
+
+        ///< Map that stored all components of the circuit.
+        std::map<std::string, std::unique_ptr<IComponent>> componentList = {};
+
+        ///< Map that stored CLI functions.
+        std::map<std::string, std::function<void (std::string &)>> _circuitFuncs = {};
     };
 }
