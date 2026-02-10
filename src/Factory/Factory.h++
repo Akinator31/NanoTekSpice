@@ -8,25 +8,24 @@
 #include <memory>
 #include <string>
 
-#include "IComponent.h++"
 #include "Components/ElementaryComponents/AndGate.h++"
 #include "Components/ElementaryComponents/NotGate.h++"
 #include "Components/ElementaryComponents/OrGate.h++"
+#include "Components/ElementaryComponents/XorGate.h++"
 #include "Components/SpecialComponents/Clock.h++"
+#include "Components/SpecialComponents/False.h++"
 #include "Components/SpecialComponents/Input.h++"
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
-#include "Components/SpecialComponents/False.h++"
+#include "IComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @brief Factory class for create components
      */
-    class Factory
-    {
+    class Factory {
         ///< The map that stored component constructor functions
-        std::map<std::string, std::function<std::unique_ptr<IComponent> ()>> _builder = {
+        std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
             {"input", []() { return std::make_unique<Input>(); }},
             {"clock", []() { return std::make_unique<Clock>(); }},
             {"true", []() { return std::make_unique<class True>(); }},
@@ -34,10 +33,11 @@ namespace nts
             {"output", []() { return std::make_unique<Out>(); }},
             {"and", []() { return std::make_unique<AndGate>(); }},
             {"or", []() { return std::make_unique<OrGate>(); }},
+            {"xor", []() { return std::make_unique<XorGate>(); }},
             {"not", []() { return std::make_unique<NotGate>(); }}
         };
 
-    public:
+      public:
         Factory() = default;
         /**
          *
