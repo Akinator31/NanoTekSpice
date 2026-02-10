@@ -10,6 +10,7 @@
 
 #include "IComponent.h++"
 #include "Components/ElementaryComponents/AndGate.h++"
+#include "Components/ElementaryComponents/NotGate.h++"
 #include "Components/ElementaryComponents/OrGate.h++"
 #include "Components/SpecialComponents/Clock.h++"
 #include "Components/SpecialComponents/Input.h++"
@@ -33,6 +34,7 @@ namespace nts
             {"output", []() { return std::make_unique<Out>(); }},
             {"and", []() { return std::make_unique<AndGate>(); }},
             {"or", []() { return std::make_unique<OrGate>(); }},
+            {"not", []() { return std::make_unique<NotGate>(); }}
         };
 
     public:
