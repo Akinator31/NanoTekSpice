@@ -2,8 +2,8 @@
 // Created by Noah on 09/02/2026.
 //
 
-#include "IComponent.h++"
 #include "OrGate.h++"
+#include "IComponent.h++"
 
 namespace nts {
     void OrGate::simulate(const size_t tick) {
@@ -35,6 +35,10 @@ namespace nts {
         if (first == False && second == False)
             return False;
         if (first == Undefined && second == Undefined)
+            return Undefined;
+        if (first == Undefined && second == False)
+            return Undefined;
+        if (first == False && second == Undefined)
             return Undefined;
         return True;
     }
