@@ -40,7 +40,7 @@ namespace nts
         std::map<std::string, Tristate> tristateString = {
             {"0", False},
             {"1", True},
-            {"-1", Undefined},
+            {"U", Undefined},
         };
 
         if (!tristateString.contains(value))
