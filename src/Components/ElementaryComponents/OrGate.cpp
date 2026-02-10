@@ -2,8 +2,8 @@
 // Created by Noah on 09/02/2026.
 //
 
-#include "IComponent.h++"
 #include "OrGate.h++"
+#include "IComponent.h++"
 
 namespace nts {
     void OrGate::simulate(const size_t tick) {
@@ -27,14 +27,21 @@ namespace nts {
     }
 
     void OrGate::setLink(const size_t pin, IComponent& other, size_t otherPin) {
-        this->_input[pin].component = &other;
-        this->_input[pin].pin = otherPin;
+        if (pin == 1 || pin == 2 || pin == 3)
+        {
+            this->_input[pin].component = &other;
+            this->_input[pin].pin = otherPin;
+        }
     }
 
     Tristate OrGate::computeOrOperation(const Tristate first, const Tristate second) {
         if (first == False && second == False)
             return False;
         if (first == Undefined && second == Undefined)
+            return Undefined;
+        if (first == Undefined && second == False)
+            return Undefined;
+        if (first == False && second == Undefined)
             return Undefined;
         return True;
     }
