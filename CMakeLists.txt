@@ -10,6 +10,12 @@ add_executable(nanotekspice ${ALL_SRC}
         include/IComponent.h++
         src/Components/ElementaryComponents/AndGate.cpp
         src/Components/ElementaryComponents/AndGate.h++
+        src/Components/ElementaryComponents/XorGate.cpp
+        src/Components/ElementaryComponents/XorGate.h++
+        src/Components/ElementaryComponents/NotGate.cpp
+        src/Components/ElementaryComponents/NotGate.h++
+        src/Components/ElementaryComponents/OrGate.cpp
+        src/Components/ElementaryComponents/OrGate.h++
         src/Components/SpecialComponents/Input.cpp
         src/Components/SpecialComponents/Input.h++
         src/Factory/Factory.cpp
