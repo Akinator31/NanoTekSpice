@@ -71,9 +71,9 @@ namespace nts
 
         for (const auto& pair : this->_componentList)
         {
-            if (dynamic_cast<Out *>(pair.second.get()))
+            if (dynamic_cast<Out*>(pair.second.get()))
             {
-                dynamic_cast<Out *>(pair.second.get())->compute(1);
+                dynamic_cast<Out*>(pair.second.get())->compute(1);
             }
         }
     }

@@ -13,10 +13,14 @@ namespace nts
 {
     class FourAndGates : public IComponent
     {
-        std::map<int, AndGate> _andGates;
+        std::vector<std::unique_ptr<IComponent>> _andGates;
 
     public:
+        /**
+         * 4081 gate constructor
+         */
         FourAndGates();
+
         /**
          * @brief Simulate a tick of an AndGate component
          * @param tick The global tick of the circuit
@@ -39,6 +43,6 @@ namespace nts
          */
         void setLink(std::size_t pin, IComponent& other, std::size_t otherPin) override;
 
-        std::function<Tristate (IComponent *, size_t)> createFunc(size_t pin);
+        [[nodiscard]] std::function<Tristate (IComponent*, size_t)> createFunc(size_t pin) const;
     };
 }
