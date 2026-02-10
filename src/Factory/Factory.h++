@@ -9,6 +9,7 @@
 #include <string>
 
 #include "Components/ElementaryComponents/AndGate.h++"
+#include "Components/ElementaryComponents/NotGate.h++"
 #include "Components/ElementaryComponents/OrGate.h++"
 #include "Components/ElementaryComponents/XorGate.h++"
 #include "Components/SpecialComponents/Clock.h++"
@@ -33,6 +34,7 @@ namespace nts {
             {"and", []() { return std::make_unique<AndGate>(); }},
             {"or", []() { return std::make_unique<OrGate>(); }},
             {"xor", []() { return std::make_unique<XorGate>(); }},
+            {"not", []() { return std::make_unique<NotGate>(); }}
         };
 
       public:

@@ -31,10 +31,13 @@ namespace nts
         return Undefined;
     }
 
-    void AndGate::setLink(const size_t pin, IComponent& other, size_t otherPin)
+    void AndGate::setLink(const size_t pin, IComponent& other, const size_t otherPin)
     {
-        this->_input[pin].component = &other;
-        this->_input[pin].pin = otherPin;
+        if (pin == 1 || pin == 2 || pin == 3)
+        {
+            this->_input[pin].component = &other;
+            this->_input[pin].pin = otherPin;
+        }
     }
 
     Tristate AndGate::computeAndOperation(const Tristate first, const Tristate second)
