@@ -18,13 +18,15 @@
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
 #include "IComponent.h++"
-#include "Components/GatesComponents/FourAndGates.h++"
+#include "Components/GatesComponents/GenericGatesComponents.h++"
 
-namespace nts {
+namespace nts
+{
     /**
      * @brief Factory class for create components
      */
-    class Factory {
+    class Factory
+    {
         ///< The map that stored component constructor functions
         std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
             {"input", []() { return std::make_unique<Input>(); }},
@@ -36,10 +38,32 @@ namespace nts {
             {"or", []() { return std::make_unique<OrGate>(); }},
             {"xor", []() { return std::make_unique<XorGate>(); }},
             {"not", []() { return std::make_unique<NotGate>(); }},
-            {"4081", []() { return std::make_unique<FourAndGates>(); }},
+            {
+                "4081", []()
+                {
+                    return std::make_unique<GenericGatesComponents>(
+                        "and",
+                        4,
+                        std::map<int, ComponentMapping>{
+                            {1, {0, 2}},
+                            {2, {0, 1}},
+                            {3, {0, 3}},
+                            {4, {1, 3}},
+                            {5, {1, 1}},
+                            {6, {1, 2}},
+                            {8, {2, 1}},
+                            {9, {2, 2}},
+                            {10, {2, 3}},
+                            {11, {3, 3}},
+                            {12, {3, 2}},
+                            {13, {3, 1}},
+                        }
+                    );
+                }
+            }
         };
 
-      public:
+    public:
         Factory() = default;
         /**
          *

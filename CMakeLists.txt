@@ -44,6 +44,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/SpecialComponents/Clock.h++
         src/Components/GatesComponents/FourAndGates.cpp
         src/Components/GatesComponents/FourAndGates.h++
+        src/Components/GatesComponents/GenericGatesComponents.cpp
+        src/Components/GatesComponents/GenericGatesComponents.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror -g3)
