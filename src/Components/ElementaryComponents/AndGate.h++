@@ -55,7 +55,7 @@ namespace nts
         /**
          * @brief Compute an && operation
          * @param first First operand
-         * @param second Second operand
+         * @param second Second operand(Tristate first, Tristate second);
          * @return The result of the && operation
          */
         static Tristate computeAndOperation(Tristate first, Tristate second);

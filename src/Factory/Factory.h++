@@ -18,6 +18,7 @@
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
 #include "IComponent.h++"
+#include "Components/GatesComponents/FourAndGates.h++"
 
 namespace nts {
     /**
@@ -34,7 +35,8 @@ namespace nts {
             {"and", []() { return std::make_unique<AndGate>(); }},
             {"or", []() { return std::make_unique<OrGate>(); }},
             {"xor", []() { return std::make_unique<XorGate>(); }},
-            {"not", []() { return std::make_unique<NotGate>(); }}
+            {"not", []() { return std::make_unique<NotGate>(); }},
+            {"4081", []() { return std::make_unique<FourAndGates>(); }},
         };
 
       public:
