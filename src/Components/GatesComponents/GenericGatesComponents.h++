@@ -71,3 +71,21 @@ namespace nts
         [[nodiscard]] std::function<Tristate (IComponent*, size_t)> createFunc(size_t pin);
     };
 }
+
+static const std::map<int, nts::ComponentMapping> FOUR_AND_GATES_MAPPING {
+    {1, {0, 2}},
+    {2, {0, 1}},
+    {3, {0, 3}},
+    {4, {1, 3}},
+    {5, {1, 1}},
+    {6, {1, 2}},
+    {8, {2, 1}},
+    {9, {2, 2}},
+    {10, {2, 3}},
+    {11, {3, 3}},
+    {12, {3, 2}},
+    {13, {3, 1}},
+};
+
+///< Macros that allow you to create gates component easily
+#define CREATE_4081 std::make_unique<GenericGatesComponents>("and", 4, FOUR_AND_GATES_MAPPING)

@@ -38,34 +38,12 @@ namespace nts
             {"or", []() { return std::make_unique<OrGate>(); }},
             {"xor", []() { return std::make_unique<XorGate>(); }},
             {"not", []() { return std::make_unique<NotGate>(); }},
-            {
-                "4081", []()
-                {
-                    return std::make_unique<GenericGatesComponents>(
-                        "and",
-                        4,
-                        std::map<int, ComponentMapping>{
-                            {1, {0, 2}},
-                            {2, {0, 1}},
-                            {3, {0, 3}},
-                            {4, {1, 3}},
-                            {5, {1, 1}},
-                            {6, {1, 2}},
-                            {8, {2, 1}},
-                            {9, {2, 2}},
-                            {10, {2, 3}},
-                            {11, {3, 3}},
-                            {12, {3, 2}},
-                            {13, {3, 1}},
-                        }
-                    );
-                }
-            }
+            {"4081", [](){ return CREATE_4081; }}
         };
 
     public:
         Factory() = default;
-        /**
+        /**AndGate
          *
          * @param type The of the component we want to create.
          * @throw std::exception Throw an exception if the type of the component given as parameter isn't support by the program.

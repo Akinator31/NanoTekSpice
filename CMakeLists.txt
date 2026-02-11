@@ -26,8 +26,6 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Circuit/Circuit.h++
         src/Components/AdvancedComponents/FourBitsAdder.cpp
         src/Components/AdvancedComponents/FourBitsAdder.h++
-        src/Components/GatesComponents/FourNorGates.cpp
-        src/Components/GatesComponents/FourNorGates.h++
         src/Parser/Parser.cpp
         src/Parser/Parser.h++
         src/Errors/NanoTekSpiceErrors.cpp
@@ -42,11 +40,9 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/SpecialComponents/False.h++
         src/Components/SpecialComponents/Clock.cpp
         src/Components/SpecialComponents/Clock.h++
-        src/Components/GatesComponents/FourAndGates.cpp
-        src/Components/GatesComponents/FourAndGates.h++
         src/Components/GatesComponents/GenericGatesComponents.cpp
         src/Components/GatesComponents/GenericGatesComponents.h++
 )
 
-target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror -g3)
+target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
 target_include_directories(nanotekspice PRIVATE include src)
