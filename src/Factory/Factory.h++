@@ -39,6 +39,7 @@ namespace nts
             {"xor", []() { return std::make_unique<XorGate>(); }},
             {"not", []() { return std::make_unique<NotGate>(); }},
             {"4001", []() { return CREATE_4001; }},
+            {"4011", []() { return CREATE_4011; }},
             {"4081", [](){ return CREATE_4081; }}
         };
 
