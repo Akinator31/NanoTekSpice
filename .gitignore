@@ -6,3 +6,4 @@ test.nts
 vgcore*
 nanotekspice
 Makefile
+.clang-format
