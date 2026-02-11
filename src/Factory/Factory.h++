@@ -40,6 +40,7 @@ namespace nts
             {"not", []() { return std::make_unique<NotGate>(); }},
             {"4001", []() { return CREATE_4001; }},
             {"4011", []() { return CREATE_4011; }},
+            {"4030", []() { return CREATE_4030; }},
             {"4081", [](){ return CREATE_4081; }}
         };
 
