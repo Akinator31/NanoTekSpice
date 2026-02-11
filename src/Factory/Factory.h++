@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 
+#include "Components/GatesComponents/GenericGatesComponents.h++"
 #include "Components/ElementaryComponents/AndGate.h++"
 #include "Components/ElementaryComponents/NotGate.h++"
 #include "Components/ElementaryComponents/OrGate.h++"
@@ -18,7 +19,6 @@
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
 #include "IComponent.h++"
-#include "Components/GatesComponents/GenericGatesComponents.h++"
 
 namespace nts
 {
@@ -30,14 +30,15 @@ namespace nts
         ///< The map that stored component constructor functions
         std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
             {"input", []() { return std::make_unique<Input>(); }},
-            {"clock", []() { return std::make_unique<Clock>(); }},
+            {"output", []() { return std::make_unique<Out>(); }},
             {"true", []() { return std::make_unique<class True>(); }},
             {"false", []() { return std::make_unique<class False>(); }},
-            {"output", []() { return std::make_unique<Out>(); }},
+            {"clock", []() { return std::make_unique<Clock>(); }},
             {"and", []() { return std::make_unique<AndGate>(); }},
             {"or", []() { return std::make_unique<OrGate>(); }},
             {"xor", []() { return std::make_unique<XorGate>(); }},
             {"not", []() { return std::make_unique<NotGate>(); }},
+            {"4001", []() { return CREATE_4001; }},
             {"4081", [](){ return CREATE_4081; }}
         };
 

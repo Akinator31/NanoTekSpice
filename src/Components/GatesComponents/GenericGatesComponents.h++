@@ -72,7 +72,7 @@ namespace nts
     };
 }
 
-static const std::map<int, nts::ComponentMapping> FOUR_AND_GATES_MAPPING {
+static const std::map<int, nts::ComponentMapping> FOUR_THREE_COMPONENT_GATES {
     {1, {0, 2}},
     {2, {0, 1}},
     {3, {0, 3}},
@@ -87,5 +87,21 @@ static const std::map<int, nts::ComponentMapping> FOUR_AND_GATES_MAPPING {
     {13, {3, 1}},
 };
 
+static const std::map<int, nts::ComponentMapping> SIX_TWO_COMPONENT_GATES {
+    {1, {0, 1}},
+    {2, {0, 2}},
+    {3, {1, 1}},
+    {4, {1, 2}},
+    {5, {2, 1}},
+    {6, {2, 2}},
+    {8, {3, 1}},
+    {9, {3, 2}},
+    {10, {4, 1}},
+    {11, {4, 2}},
+    {12, {5, 1}},
+    {13, {5, 2}},
+};
+
 ///< Macros that allow you to create gates component easily
-#define CREATE_4081 std::make_unique<GenericGatesComponents>("and", 4, FOUR_AND_GATES_MAPPING)
+#define CREATE_4001 std::make_unique<GenericGatesComponents>("nor", 4, FOUR_THREE_COMPONENT_GATES)
+#define CREATE_4081 std::make_unique<GenericGatesComponents>("and", 4, FOUR_THREE_COMPONENT_GATES)
