@@ -42,6 +42,7 @@ namespace nts
             {"4011", []() { return CREATE_4011; }},
             {"4030", []() { return CREATE_4030; }},
             {"4069", []() { return CREATE_4069; }},
+            {"4071", []() { return CREATE_4071; }},
             {"4081", []() { return CREATE_4081; }},
         };
 
