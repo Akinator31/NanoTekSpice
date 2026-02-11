@@ -106,4 +106,5 @@ static const std::map<int, nts::ComponentMapping> SIX_TWO_COMPONENT_GATES {
 #define CREATE_4001 std::make_unique<GenericGatesComponents>("nor", 4, FOUR_THREE_COMPONENT_GATES)
 #define CREATE_4011 std::make_unique<GenericGatesComponents>("nand", 4, FOUR_THREE_COMPONENT_GATES)
 #define CREATE_4030 std::make_unique<GenericGatesComponents>("xor", 4, FOUR_THREE_COMPONENT_GATES)
+#define CREATE_4069 std::make_unique<GenericGatesComponents>("not", 6, SIX_TWO_COMPONENT_GATES)
 #define CREATE_4081 std::make_unique<GenericGatesComponents>("and", 4, FOUR_THREE_COMPONENT_GATES)
