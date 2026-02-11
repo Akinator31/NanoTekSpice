@@ -56,4 +56,45 @@ namespace nts
             return False;
         return Undefined;
     }
+
+    Tristate operator&&(const Tristate first, const Tristate second)
+    {
+        if (first == true && second == true)
+            return True;
+        if (first == Undefined && second == Undefined)
+            return Undefined;
+        if (first == true || second == true)
+        {
+            if (first == Undefined || second == Undefined)
+            {
+                return Undefined;
+            }
+            return False;
+        }
+        return False;
+    }
+
+    Tristate operator||(const Tristate first, const Tristate second)
+    {
+        if (first == False && second == False)
+            return False;
+        if (first == Undefined && second == Undefined)
+            return Undefined;
+        if (first == Undefined && second == False)
+            return Undefined;
+        if (first == False && second == Undefined)
+            return Undefined;
+        return True;
+    }
+
+    Tristate operator^(Tristate first, Tristate second)
+    {
+        if (first == True && second == False)
+            return True;
+        if (first == False && second == True)
+            return True;
+        if (first == Undefined || second == Undefined)
+            return Undefined;
+        return False;
+    }
 }

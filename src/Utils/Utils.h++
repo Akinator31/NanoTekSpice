@@ -39,5 +39,34 @@ namespace nts
         static Tristate stringToTristate(const std::string& value);
     };
 
+    /**
+     * Perform a NOT on a Tristate
+     * @param value Value to invert
+     * @return Result
+     */
     Tristate operator!(Tristate value);
+
+    /**
+     * Perform an AND on two Tristate
+     * @param first First value
+     * @param second Second value
+     * @return Result
+     */
+    Tristate operator&&(Tristate first, Tristate second);
+
+    /**
+     * Perform an OR on two Tristate
+     * @param first First value
+     * @param second Second value
+     * @return Result
+     */
+    Tristate operator||(Tristate first, Tristate second);
+
+    /**
+     * Perform a XOR on two Tristate.
+     * @param first First value
+     * @param second Second value
+     * @return Result
+     */
+    Tristate operator^(Tristate first, Tristate second);
 }
