@@ -18,13 +18,15 @@
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
 #include "IComponent.h++"
-#include "Components/GatesComponents/FourAndGates.h++"
+#include "Components/GatesComponents/GenericGatesComponents.h++"
 
-namespace nts {
+namespace nts
+{
     /**
      * @brief Factory class for create components
      */
-    class Factory {
+    class Factory
+    {
         ///< The map that stored component constructor functions
         std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
             {"input", []() { return std::make_unique<Input>(); }},
@@ -36,12 +38,12 @@ namespace nts {
             {"or", []() { return std::make_unique<OrGate>(); }},
             {"xor", []() { return std::make_unique<XorGate>(); }},
             {"not", []() { return std::make_unique<NotGate>(); }},
-            {"4081", []() { return std::make_unique<FourAndGates>(); }},
+            {"4081", [](){ return CREATE_4081; }}
         };
 
-      public:
+    public:
         Factory() = default;
-        /**
+        /**AndGate
          *
          * @param type The of the component we want to create.
          * @throw std::exception Throw an exception if the type of the component given as parameter isn't support by the program.
