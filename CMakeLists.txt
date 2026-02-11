@@ -8,14 +8,6 @@ file(GLOB_RECURSE ALL_SRC "src/*.cpp")
 
 add_executable(nanotekspice ${ALL_SRC}
         include/IComponent.h++
-        src/Components/ElementaryComponents/AndGate.cpp
-        src/Components/ElementaryComponents/AndGate.h++
-        src/Components/ElementaryComponents/XorGate.cpp
-        src/Components/ElementaryComponents/XorGate.h++
-        src/Components/ElementaryComponents/NotGate.cpp
-        src/Components/ElementaryComponents/NotGate.h++
-        src/Components/ElementaryComponents/OrGate.cpp
-        src/Components/ElementaryComponents/OrGate.h++
         src/Components/SpecialComponents/Input.cpp
         src/Components/SpecialComponents/Input.h++
         src/Factory/Factory.cpp
@@ -42,6 +34,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/SpecialComponents/Clock.h++
         src/Components/GatesComponents/GenericGatesComponents.cpp
         src/Components/GatesComponents/GenericGatesComponents.h++
+        src/Components/ElementaryComponents/ElementaryComponents.cpp
+        src/Components/ElementaryComponents/ElementaryComponents.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
