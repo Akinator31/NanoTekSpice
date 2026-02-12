@@ -37,8 +37,7 @@ namespace nts {
          * @param mapping The mapping for reference Pin, Gate index and internal pin of the
          * component.
          */
-        GenericGatesComponents(
-            const std::string& type, size_t count, const std::map<int, ComponentMapping>& mapping);
+        GenericGatesComponents(const std::string& type, size_t count, const std::map<int, ComponentMapping>& mapping);
 
         /**
          * @brief Simulate a tick of a component

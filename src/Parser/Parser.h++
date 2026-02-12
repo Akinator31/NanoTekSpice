@@ -8,23 +8,16 @@
 
 #include "Circuit/Circuit.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @brief Parser class that extract chipsets and links from NTS file.
      */
-    class Parser
-    {
+    class Parser {
     public:
         /**
          * Enum that define available parser modes.
          */
-        enum ParserMode
-        {
-            UNDEFINED,
-            CHIPSET,
-            LINKS
-        };
+        enum ParserMode { UNDEFINED, CHIPSET, LINKS };
 
         /**
          * @brief Default constructor for Parser class.
@@ -62,10 +55,10 @@ namespace nts
         static void handleUndefinedParserMode(Circuit& circuit, std::string& line);
 
         ///< Map for store parsing function
-        std::map<ParserMode, std::function<void (Circuit&, std::string&)>> _parseFunctions = {
-            {CHIPSET, parseChipsets},
-            {LINKS, parseLinks},
-            {UNDEFINED, handleUndefinedParserMode},
+        std::map<ParserMode, std::function<void(Circuit&, std::string&)>> _parseFunctions = {
+            { CHIPSET, parseChipsets },
+            { LINKS, parseLinks },
+            { UNDEFINED, handleUndefinedParserMode },
         };
     };
 }

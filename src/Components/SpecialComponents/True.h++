@@ -5,10 +5,8 @@
 #pragma once
 #include "IComponent.h++"
 
-namespace nts
-{
-    class True : public IComponent
-    {
+namespace nts {
+    class True : public IComponent {
         Tristate _currentState = Tristate::True; ///< Current state of the True component (used by the compute function)
 
     public:

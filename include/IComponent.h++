@@ -5,23 +5,16 @@
 #pragma once
 #include <memory>
 
-namespace nts
-{
+namespace nts {
     /**
      * @brief Enum that defined states of a component's pin.
      */
-    enum Tristate
-    {
-        Undefined = -1,
-        True = true,
-        False = false
-    };
+    enum Tristate { Undefined = -1, True = true, False = false };
 
     /**
      * @brief Interface for all components.
      */
-    class IComponent
-    {
+    class IComponent {
     public:
         virtual ~IComponent() = default;
 
@@ -33,8 +26,7 @@ namespace nts
     /**
      * @brief Struct for describe a linked component.
      */
-    struct ComponentLink
-    {
+    struct ComponentLink {
         IComponent* component = nullptr;
         size_t pin = 0;
     };

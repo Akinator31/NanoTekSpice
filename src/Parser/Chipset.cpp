@@ -12,10 +12,8 @@
 #include "Factory/Factory.h++"
 #include "Utils/Utils.h++"
 
-namespace nts
-{
-    void Parser::parseChipsets(Circuit& circuit, const std::string& line)
-    {
+namespace nts {
+    void Parser::parseChipsets(Circuit& circuit, const std::string& line) {
         const std::string trimmedString = Utils::trim(line);
         std::stringstream lineStream(trimmedString);
 
@@ -26,15 +24,12 @@ namespace nts
         if (!Utils::is_valid_whitespace(trimmedString))
             throw NanoTekSpiceException(SyntaxFileException);
 
-        while (lineStream >> extractedWord)
-        {
-            if (chipsetType.empty())
-            {
+        while (lineStream >> extractedWord) {
+            if (chipsetType.empty()) {
                 chipsetType = extractedWord;
                 continue;
             }
-            if (chipsetName.empty())
-            {
+            if (chipsetName.empty()) {
                 chipsetName = extractedWord;
                 continue;
             }

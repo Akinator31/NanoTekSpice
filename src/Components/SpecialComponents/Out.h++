@@ -5,18 +5,16 @@
 #pragma once
 #include "IComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @class Out
      * @brief Class for Out Special Component
      * @details This class inherit from IComponent interface
      * @see IComponent
      */
-    class Out: public IComponent
-    {
+    class Out : public IComponent {
         Tristate _currentState = Undefined; ///< Current state of the Out component (used by the compute function)
-        ComponentLink _link; ///< The component's pin linked to the output
+        ComponentLink _link;                ///< The component's pin linked to the output
 
     public:
         /**

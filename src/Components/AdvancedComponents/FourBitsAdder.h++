@@ -6,9 +6,6 @@
 
 #include "IComponent.h++"
 
-namespace nts
-{
-    class FourBitsAdder: public IComponent
-    {
-    };
+namespace nts {
+    class FourBitsAdder : public IComponent {};
 }

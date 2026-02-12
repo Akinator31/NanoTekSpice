@@ -12,16 +12,13 @@
 #include "Factory/Factory.h++"
 #include "Utils/Utils.h++"
 
-namespace nts
-{
-    std::vector<std::string> extractComponentNameAndPin(const std::string& component)
-    {
+namespace nts {
+    std::vector<std::string> extractComponentNameAndPin(const std::string& component) {
         std::string segment;
         std::stringstream componentStream(component);
         std::vector<std::string> componentParts = {};
 
-        while (getline(componentStream, segment, ':'))
-        {
+        while (getline(componentStream, segment, ':')) {
             if (componentStream.fail())
                 throw NanoTekSpiceException(SyntaxFileException);
             componentParts.push_back(segment);
@@ -29,40 +26,32 @@ namespace nts
         return componentParts;
     }
 
-    void addLinks(Circuit& circuit, std::string& firstComponent, std::string& secondComponent)
-    {
+    void addLinks(Circuit& circuit, std::string& firstComponent, std::string& secondComponent) {
         std::stringstream firstStream(firstComponent);
         std::stringstream secondStream(secondComponent);
 
         std::vector firstComponentParts = extractComponentNameAndPin(firstComponent);
         std::vector secondComponentParts = extractComponentNameAndPin(secondComponent);
 
-        if (firstComponentParts.size() > 2 || firstComponentParts.size() < 2 || secondComponentParts.size() > 2 ||
-            secondComponentParts.size() < 2)
+        if (firstComponentParts.size() > 2 || firstComponentParts.size() < 2 || secondComponentParts.size() > 2 || secondComponentParts.size() < 2)
             throw NanoTekSpiceException(SyntaxFileException);
 
         size_t firstComponentPin;
         size_t secondComponentPin;
 
-        try
-        {
+        try {
             firstComponentPin = std::stoul(firstComponentParts[1]);
             secondComponentPin = std::stoul(secondComponentParts[1]);
-        }
-        catch ([[maybe_unused]] const std::invalid_argument& e)
-        {
+        } catch ([[maybe_unused]] const std::invalid_argument& e) {
             throw NanoTekSpiceException(SyntaxFileException);
-        }
-        catch ([[maybe_unused]] const std::out_of_range& e)
-        {
+        } catch ([[maybe_unused]] const std::out_of_range& e) {
             throw NanoTekSpiceException(SyntaxFileException);
         }
 
         circuit.addLink(firstComponentParts[0], firstComponentPin, secondComponentParts[0], secondComponentPin);
     }
 
-    void Parser::parseLinks([[maybe_unused]] Circuit& circuit, std::string& line)
-    {
+    void Parser::parseLinks([[maybe_unused]] Circuit& circuit, std::string& line) {
         const std::string trimmedString = Utils::trim(line);
         std::stringstream lineStream(trimmedString);
 
@@ -73,15 +62,12 @@ namespace nts
         if (!Utils::is_valid_whitespace(trimmedString))
             throw NanoTekSpiceException(SyntaxFileException);
 
-        while (lineStream >> extractedWord)
-        {
-            if (firstComponent.empty())
-            {
+        while (lineStream >> extractedWord) {
+            if (firstComponent.empty()) {
                 firstComponent = extractedWord;
                 continue;
             }
-            if (secondComponent.empty())
-            {
+            if (secondComponent.empty()) {
                 secondComponent = extractedWord;
                 continue;
             }
