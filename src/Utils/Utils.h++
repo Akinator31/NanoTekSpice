@@ -8,14 +8,11 @@
 
 #include "IComponent.h++"
 
-
-namespace nts
-{
+namespace nts {
     /**
      * Utils class used for group all functions that we use often in the program.
      */
-    class Utils
-    {
+    class Utils {
     public:
         /**
          * Remove spaces, line breaks or tabs from a string.

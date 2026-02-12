@@ -4,15 +4,12 @@
 
 #include "NanoTekSpiceErrors.h++"
 
-namespace nts
-{
-    NanoTekSpiceException::NanoTekSpiceException(const ErrorType type)
-    {
+namespace nts {
+    NanoTekSpiceException::NanoTekSpiceException(const ErrorType type) {
         this->_error = this->_error_map[type];
     }
 
-    const char* NanoTekSpiceException::what() const noexcept
-    {
+    const char* NanoTekSpiceException::what() const noexcept {
         return this->_error.c_str();
     }
 }

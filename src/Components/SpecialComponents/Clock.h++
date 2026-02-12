@@ -5,14 +5,12 @@
 #pragma once
 #include "IComponent.h++"
 
-namespace nts
-{
-    class Clock : public IComponent
-    {
+namespace nts {
+    class Clock : public IComponent {
         ///< Why there are 2 state wtf ??? Because we want to set the value of an Clock when we simulate the program,
         /// not when the user set it via the `input=value` command.
         Tristate _currentState = Undefined; ///< Current state of the Clock component (used by the compute function)
-        Tristate _nextState = Undefined; ///< Next state of the Clock component (used by the simulate function)
+        Tristate _nextState = Undefined;    ///< Next state of the Clock component (used by the simulate function)
 
     public:
         /**

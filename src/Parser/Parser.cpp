@@ -11,10 +11,8 @@
 #include "Factory/Factory.h++"
 #include "Utils/Utils.h++"
 
-namespace nts
-{
-    Circuit Parser::loadCircuit(const int argc, char** argv)
-    {
+namespace nts {
+    Circuit Parser::loadCircuit(const int argc, char** argv) {
         if (argc < 2)
             throw NanoTekSpiceException(NoFileException);
         if (argc > 2)
@@ -29,21 +27,18 @@ namespace nts
         ParserMode mode = UNDEFINED;
         Circuit circuit;
 
-        while (getline(ntsFile, line))
-        {
+        while (getline(ntsFile, line)) {
             std::string trimmed_line = Utils::trim(line);
 
             if (trimmed_line.starts_with("#"))
                 continue;
             if (trimmed_line.empty())
                 continue;
-            if (trimmed_line.starts_with(".chipsets:"))
-            {
+            if (trimmed_line.starts_with(".chipsets:")) {
                 mode = CHIPSET;
                 continue;
             }
-            if (trimmed_line.starts_with(".links:"))
-            {
+            if (trimmed_line.starts_with(".links:")) {
                 mode = LINKS;
                 continue;
             }
@@ -58,8 +53,7 @@ namespace nts
         return circuit;
     }
 
-    void Parser::handleUndefinedParserMode([[maybe_unused]] Circuit& circuit, [[maybe_unused]] std::string& line)
-    {
+    void Parser::handleUndefinedParserMode([[maybe_unused]] Circuit& circuit, [[maybe_unused]] std::string& line) {
         throw NanoTekSpiceException(SyntaxFileException);
     }
 }

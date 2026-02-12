@@ -14,10 +14,8 @@ namespace nts {
         return this->_currentState;
     }
 
-    void
-    True::setLink(const size_t pin, [[maybe_unused]] IComponent& other, [[maybe_unused]] size_t otherPin) {
+    void True::setLink(const size_t pin, [[maybe_unused]] IComponent& other, [[maybe_unused]] size_t otherPin) {
         if (pin != 1)
             throw NanoTekSpiceException(SyntaxFileException);
-        other.compute(otherPin);
     }
 } // namespace nts

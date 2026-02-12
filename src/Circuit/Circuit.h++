@@ -10,13 +10,11 @@
 
 #include "IComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @brief Circuit class to orchestrate all components.
      */
-    class Circuit
-    {
+    class Circuit {
     public:
         /**
          * Circuit constructor.
@@ -59,8 +57,7 @@ namespace nts
          * @param componentToLink Name of the component to link.
          * @param componentToLinkPin The pin of the component to link.
          */
-        void addLink(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
-                     size_t componentToLinkPin);
+        void addLink(const std::string& componentName, size_t componentPin, const std::string& componentToLink, size_t componentToLinkPin);
 
         /**
          * Simulate in loop.
@@ -82,9 +79,9 @@ namespace nts
         std::map<std::string, std::unique_ptr<IComponent>> _componentList = {};
 
         ///< Map that stored CLI functions.
-        std::map<std::string, std::function<void (std::string&)>> _circuitFuncs = {};
+        std::map<std::string, std::function<void(std::string&)>> _circuitFuncs = {};
 
         ///< Map that stored display functions.
-        std::map<std::type_index, std::function<void (IComponent*, const std::string&)>> _displayFuncs;
+        std::map<std::type_index, std::function<void(IComponent*, const std::string&)>> _displayFuncs;
     };
 }
