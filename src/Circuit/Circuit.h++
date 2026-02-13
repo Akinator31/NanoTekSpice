@@ -6,15 +6,16 @@
 
 #include <functional>
 #include <map>
-#include <typeindex>
 
 #include "IComponent.h++"
 
-namespace nts {
+namespace nts
+{
     /**
      * @brief Circuit class to orchestrate all components.
      */
-    class Circuit {
+    class Circuit
+    {
     public:
         /**
          * Circuit constructor.
@@ -29,7 +30,7 @@ namespace nts {
         /**
          * @brief Prints the current tick and the value of all inputs and outputs on the standard output, each sorted by name in ASCII order.
          */
-        void display(std::string& command);
+        void display(std::string& command) const;
 
         /**
          * Assign a value to an input.
@@ -57,7 +58,8 @@ namespace nts {
          * @param componentToLink Name of the component to link.
          * @param componentToLinkPin The pin of the component to link.
          */
-        void addLink(const std::string& componentName, size_t componentPin, const std::string& componentToLink, size_t componentToLinkPin);
+        void addLink(const std::string& componentName, size_t componentPin, const std::string& componentToLink,
+                     size_t componentToLinkPin);
 
         /**
          * Simulate in loop.
@@ -80,8 +82,5 @@ namespace nts {
 
         ///< Map that stored CLI functions.
         std::map<std::string, std::function<void(std::string&)>> _circuitFuncs = {};
-
-        ///< Map that stored display functions.
-        std::map<std::type_index, std::function<void(IComponent*, const std::string&)>> _displayFuncs;
     };
 }

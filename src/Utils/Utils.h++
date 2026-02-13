@@ -3,16 +3,17 @@
 //
 
 #pragma once
-#include <map>
 #include <string>
 
 #include "IComponent.h++"
 
-namespace nts {
+namespace nts
+{
     /**
      * Utils class used for group all functions that we use often in the program.
      */
-    class Utils {
+    class Utils
+    {
     public:
         /**
          * Remove spaces, line breaks or tabs from a string.
@@ -66,4 +67,12 @@ namespace nts {
      * @return Result
      */
     Tristate operator^(Tristate first, Tristate second);
+
+    /**
+     * Allow you to print a Tristate through an ostream
+     * @param stream The stream
+     * @param value The Tristate you want to print
+     * @return Result
+     */
+    std::ostream& operator<<(std::ostream& stream, Tristate value);
 }

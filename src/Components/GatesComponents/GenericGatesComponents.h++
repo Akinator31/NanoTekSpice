@@ -9,13 +9,16 @@
 #include <vector>
 
 #include "IComponent.h++"
+#include "Components/AComponent.h++"
 
-namespace nts {
+namespace nts
+{
     /**
      * Structure that describe information for a specific pin in a component
      * @see GenericGatesComponents
      */
-    struct ComponentMapping {
+    struct ComponentMapping
+    {
         int gateIndex;
         int internalPin;
     };
@@ -23,21 +26,24 @@ namespace nts {
     /**
      * Generic class for create GatesComponent
      */
-    class GenericGatesComponents : public IComponent {
+    class GenericGatesComponents : public AComponent
+    {
         std::vector<std::unique_ptr<IComponent>> _gates; ///< Vector that stored gates of a component.
-        std::map<int, ComponentMapping> _mapping;        ///< Map that describe "pinout" of a component.
+        std::map<int, ComponentMapping> _mapping; ///< Map that describe "pinout" of a component.
 
     public:
         /**
          * Constructor for generic Gates Components
+         * @param _numberOfPins The component's number of pins
          * @param type The gate type you want in the component ("and" for component 4081 for
          * example).
-         * @param count The number of gate you want in the component (4 for compoment 4081 for
+         * @param count The number of gate you want in the component (4 for component 4081 for
          * example).
          * @param mapping The mapping for reference Pin, Gate index and internal pin of the
          * component.
          */
-        GenericGatesComponents(const std::string& type, size_t count, const std::map<int, ComponentMapping>& mapping);
+        GenericGatesComponents(size_t _numberOfPins, const std::string& type, size_t count,
+                               const std::map<int, ComponentMapping>& mapping);
 
         /**
          * @brief Simulate a tick of a component
@@ -73,22 +79,22 @@ namespace nts {
          */
         [[nodiscard]] std::function<Tristate(IComponent*, size_t)> createFunc(size_t pin);
     };
-} // namespace nts
+}
 
 static const std::map<int, nts::ComponentMapping> FOUR_THREE_COMPONENT_GATES{
-    { 1, { 0, 2 } }, { 2, { 0, 1 } }, { 3, { 0, 3 } },  { 4, { 1, 3 } },  { 5, { 1, 1 } },  { 6, { 1, 2 } },
-    { 8, { 2, 1 } }, { 9, { 2, 2 } }, { 10, { 2, 3 } }, { 11, { 3, 3 } }, { 12, { 3, 2 } }, { 13, { 3, 1 } },
+    {1, {0, 2}}, {2, {0, 1}}, {3, {0, 3}}, {4, {1, 3}}, {5, {1, 1}}, {6, {1, 2}},
+    {8, {2, 1}}, {9, {2, 2}}, {10, {2, 3}}, {11, {3, 3}}, {12, {3, 2}}, {13, {3, 1}},
 };
 
 static const std::map<int, nts::ComponentMapping> SIX_TWO_COMPONENT_GATES{
-    { 1, { 0, 1 } }, { 2, { 0, 2 } }, { 3, { 1, 1 } },  { 4, { 1, 2 } },  { 5, { 2, 1 } },  { 6, { 2, 2 } },
-    { 8, { 3, 1 } }, { 9, { 3, 2 } }, { 10, { 4, 1 } }, { 11, { 4, 2 } }, { 12, { 5, 1 } }, { 13, { 5, 2 } },
+    {1, {0, 1}}, {2, {0, 2}}, {3, {1, 1}}, {4, {1, 2}}, {5, {2, 1}}, {6, {2, 2}},
+    {8, {3, 1}}, {9, {3, 2}}, {10, {4, 1}}, {11, {4, 2}}, {12, {5, 1}}, {13, {5, 2}},
 };
 
 ///< Macros that allow you to create gates component easily
-#define CREATE_4001 std::make_unique<GenericGatesComponents>("nor", 4, FOUR_THREE_COMPONENT_GATES)
-#define CREATE_4011 std::make_unique<GenericGatesComponents>("nand", 4, FOUR_THREE_COMPONENT_GATES)
-#define CREATE_4030 std::make_unique<GenericGatesComponents>("xor", 4, FOUR_THREE_COMPONENT_GATES)
-#define CREATE_4069 std::make_unique<GenericGatesComponents>("not", 6, SIX_TWO_COMPONENT_GATES)
-#define CREATE_4071 std::make_unique<GenericGatesComponents>("or", 4, FOUR_THREE_COMPONENT_GATES)
-#define CREATE_4081 std::make_unique<GenericGatesComponents>("and", 4, FOUR_THREE_COMPONENT_GATES)
+#define CREATE_4001 std::make_unique<GenericGatesComponents>(14, "nor", 4, FOUR_THREE_COMPONENT_GATES)
+#define CREATE_4011 std::make_unique<GenericGatesComponents>(14, "nand", 4, FOUR_THREE_COMPONENT_GATES)
+#define CREATE_4030 std::make_unique<GenericGatesComponents>(14, "xor", 4, FOUR_THREE_COMPONENT_GATES)
+#define CREATE_4069 std::make_unique<GenericGatesComponents>(14, "not", 6, SIX_TWO_COMPONENT_GATES)
+#define CREATE_4071 std::make_unique<GenericGatesComponents>(14, "or", 4, FOUR_THREE_COMPONENT_GATES)
+#define CREATE_4081 std::make_unique<GenericGatesComponents>(14, "and", 4, FOUR_THREE_COMPONENT_GATES)

@@ -6,16 +6,10 @@
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "IComponent.h++"
 
-namespace nts {
-    void True::simulate([[maybe_unused]] size_t tick) {
+namespace nts
+{
+    Tristate True::compute([[maybe_unused]] size_t pin)
+    {
+        return Tristate::True;
     }
-
-    Tristate True::compute([[maybe_unused]] size_t pin) {
-        return this->_currentState;
-    }
-
-    void True::setLink(const size_t pin, [[maybe_unused]] IComponent& other, [[maybe_unused]] size_t otherPin) {
-        if (pin != 1)
-            throw NanoTekSpiceException(SyntaxFileException);
-    }
-} // namespace nts
+}

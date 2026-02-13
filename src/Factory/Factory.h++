@@ -18,30 +18,32 @@
 #include "IComponent.h++"
 #include "Utils/Utils.h++"
 
-namespace nts {
+namespace nts
+{
     /**
      * @brief Factory class for create components
      */
-    class Factory {
+    class Factory
+    {
         ///< The map that stored component constructor functions
         std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
-            { "input", [] { return std::make_unique<Input>(); } },
-            { "output", [] { return std::make_unique<Out>(); } },
-            { "true", [] { return std::make_unique<class True>(); } },
-            { "false", [] { return std::make_unique<class False>(); } },
-            { "clock", [] { return std::make_unique<Clock>(); } },
-            { "and", [] { return CREATE_AND; } },
-            { "or", [] { return CREATE_OR; } },
-            { "xor", [] { return CREATE_XOR; } },
-            { "nor", [] { return CREATE_NOR; } },
-            { "nand", [] { return CREATE_NAND; } },
-            { "not", [] { return CREATE_NOT; } },
-            { "4001", [] { return CREATE_4001; } },
-            { "4011", [] { return CREATE_4011; } },
-            { "4030", [] { return CREATE_4030; } },
-            { "4069", [] { return CREATE_4069; } },
-            { "4071", [] { return CREATE_4071; } },
-            { "4081", [] { return CREATE_4081; } },
+            {"input", [] { return std::make_unique<Input>(); }},
+            {"output", [] { return std::make_unique<Out>(); }},
+            {"true", [] { return std::make_unique<class True>(); }},
+            {"false", [] { return std::make_unique<class False>(); }},
+            {"clock", [] { return std::make_unique<Clock>(); }},
+            {"and", [] { return CREATE_AND; }},
+            {"or", [] { return CREATE_OR; }},
+            {"xor", [] { return CREATE_XOR; }},
+            {"nor", [] { return CREATE_NOR; }},
+            {"nand", [] { return CREATE_NAND; }},
+            {"not", [] { return CREATE_NOT; }},
+            {"4001", [] { return CREATE_4001; }},
+            {"4011", [] { return CREATE_4011; }},
+            {"4030", [] { return CREATE_4030; }},
+            {"4069", [] { return CREATE_4069; }},
+            {"4071", [] { return CREATE_4071; }},
+            {"4081", [] { return CREATE_4081; }},
         };
 
     public:
