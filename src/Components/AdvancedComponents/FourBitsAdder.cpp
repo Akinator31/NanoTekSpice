@@ -3,3 +3,7 @@
 //
 
 #include "FourBitsAdder.h++"
+
+namespace nts {
+    FourBitsAdder::FourBitsAdder() : AComponent(13, Other) {}
+}

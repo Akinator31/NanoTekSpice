@@ -5,7 +5,11 @@
 #pragma once
 
 #include "IComponent.h++"
+#include "Components/AComponent.h++"
 
 namespace nts {
-    class FourBitsAdder : public IComponent {};
+    class FourBitsAdder : public AComponent {
+    public:
+        FourBitsAdder();
+    };
 }

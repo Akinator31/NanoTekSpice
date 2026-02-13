@@ -38,6 +38,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/ElementaryComponents/ElementaryComponents.h++
         src/Components/AComponent.cpp
         src/Components/AComponent.h++
+        src/Components/AdvancedComponents/Full4BitsAdder.cpp
+        src/Components/AdvancedComponents/Full4BitsAdder.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)

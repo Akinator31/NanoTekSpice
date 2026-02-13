@@ -16,15 +16,15 @@
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
 #include "IComponent.h++"
+#include "Components/AdvancedComponents/Full4BitsAdder.h++"
+#include "Components/AdvancedComponents/Half4bitsAdder.h++"
 #include "Utils/Utils.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @brief Factory class for create components
      */
-    class Factory
-    {
+    class Factory {
         ///< The map that stored component constructor functions
         std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
             {"input", [] { return std::make_unique<Input>(); }},
@@ -44,6 +44,8 @@ namespace nts
             {"4069", [] { return CREATE_4069; }},
             {"4071", [] { return CREATE_4071; }},
             {"4081", [] { return CREATE_4081; }},
+            {"half", [] { return CREATE_HALF }},
+            {"full", [] { return CREATE_FULL }}
         };
 
     public:
