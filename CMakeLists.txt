@@ -36,6 +36,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/GatesComponents/GenericGatesComponents.h++
         src/Components/ElementaryComponents/ElementaryComponents.cpp
         src/Components/ElementaryComponents/ElementaryComponents.h++
+        src/Components/AComponent.cpp
+        src/Components/AComponent.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)

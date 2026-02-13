@@ -5,28 +5,41 @@
 #pragma once
 #include <memory>
 
-namespace nts {
+namespace nts
+{
     /**
      * @brief Enum that defined states of a component's pin.
      */
     enum Tristate { Undefined = -1, True = true, False = false };
 
+    enum componentType
+    {
+        OutComponent,
+        InputComponent,
+        ClockComponent,
+        Other,
+    };
+
     /**
      * @brief Interface for all components.
      */
-    class IComponent {
+    class IComponent
+    {
     public:
         virtual ~IComponent() = default;
 
         virtual void simulate(size_t tick) = 0;
         virtual Tristate compute(size_t pin) = 0;
         virtual void setLink(size_t pin, IComponent& other, size_t otherPin) = 0;
+        virtual componentType getType() = 0;
+        virtual void setValue(Tristate value) = 0;
     };
 
     /**
      * @brief Struct for describe a linked component.
      */
-    struct ComponentLink {
+    struct ComponentLink
+    {
         IComponent* component = nullptr;
         size_t pin = 0;
     };

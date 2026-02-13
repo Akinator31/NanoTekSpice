@@ -8,24 +8,27 @@
 
 #include "Factory/Factory.h++"
 
-namespace nts {
+namespace nts
+{
     ElementaryComponents::ElementaryComponents(
-        size_t numberOfValueToCompute, std::function<Tristate(Tristate first, Tristate second)> operationFunc) {
+        const size_t _numberOfPins,
+        std::function<Tristate(Tristate first, Tristate second)> operationFunc) :
+        AComponent(_numberOfPins, Other)
+    {
         this->_operationFunc = std::move(operationFunc);
-        this->_numberOfValueToCompute = numberOfValueToCompute;
+        this->_numberOfPins = _numberOfPins;
     }
 
-    void ElementaryComponents::simulate(const std::size_t tick) {
-        this->_lastSimulatedTick = tick;
-    }
-
-    Tristate ElementaryComponents::compute(const std::size_t pin) {
+    Tristate ElementaryComponents::compute(const std::size_t pin)
+    {
         if (this->_lastComputedTick == this->_lastSimulatedTick)
             return this->_prevValue;
-        if (this->_numberOfValueToCompute == 2) {
-            if (pin == 3) {
-                const Tristate value1 = this->_input[1].component->compute(this->_input[1].pin);
-                const Tristate value2 = this->_input[2].component->compute(this->_input[2].pin);
+        if (this->_numberOfPins == 3)
+        {
+            if (pin == 3)
+            {
+                const Tristate value1 = this->_connections[1].first->compute(this->_connections[1].second);
+                const Tristate value2 = this->_connections[2].first->compute(this->_connections[2].second);
 
                 this->_prevValue = this->_operationFunc(value1, value2);
 
@@ -34,8 +37,9 @@ namespace nts {
             }
             return Undefined;
         }
-        if (pin == 2) {
-            const Tristate value1 = this->_input[1].component->compute(this->_input[1].pin);
+        if (pin == 2)
+        {
+            const Tristate value1 = this->_connections[1].first->compute(this->_connections[1].second);
 
             this->_prevValue = this->_operationFunc(value1, Undefined);
 
@@ -43,19 +47,5 @@ namespace nts {
             return this->_prevValue;
         }
         return Undefined;
-    }
-
-    void ElementaryComponents::setLink(const std::size_t pin, IComponent& other, const std::size_t otherPin) {
-        IComponent* otherPtr = &other;
-
-        if ((this->_numberOfValueToCompute == 2 && (pin == 1 || pin == 2 || pin == 3)) ||
-            (this->_numberOfValueToCompute == 1 && (pin == 1 || pin == 2))) {
-            this->_input[pin].component = &other;
-            this->_input[pin].pin = otherPin;
-
-            if (dynamic_cast<class True*>(otherPtr) || dynamic_cast<class False*>(otherPtr)) {
-                this->compute(pin);
-            }
-        }
     }
 }

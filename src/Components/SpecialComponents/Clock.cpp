@@ -6,17 +6,21 @@
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "Utils/Utils.h++"
 
-namespace nts {
-    Tristate Clock::getValue() const {
-        return this->_currentState;
+namespace nts
+{
+    Clock::Clock() : AComponent(1, ClockComponent)
+    {
     }
 
-    void Clock::setValue(const Tristate value) {
+    void Clock::setValue(const Tristate value)
+    {
         this->_nextState = value;
     }
 
-    void Clock::simulate([[maybe_unused]] size_t tick) {
-        if (this->_currentState == this->_nextState) {
+    void Clock::simulate([[maybe_unused]] size_t tick)
+    {
+        if (this->_currentState == this->_nextState)
+        {
             this->_currentState = !this->_currentState;
             this->_nextState = this->_currentState;
             return;
@@ -25,12 +29,8 @@ namespace nts {
         this->_nextState = this->_currentState;
     }
 
-    Tristate Clock::compute([[maybe_unused]] size_t pin) {
+    Tristate Clock::compute([[maybe_unused]] size_t pin)
+    {
         return this->_currentState;
-    }
-
-    void Clock::setLink(const size_t pin, [[maybe_unused]] IComponent& other, [[maybe_unused]] size_t otherPin) {
-        if (pin != 1)
-            throw NanoTekSpiceException(SyntaxFileException);
     }
 }
