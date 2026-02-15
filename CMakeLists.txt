@@ -38,6 +38,10 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/ElementaryComponents/ElementaryComponents.h++
         src/Components/AComponent.cpp
         src/Components/AComponent.h++
+        src/Components/AdvancedComponents/FlipFlop.cpp
+        src/Components/AdvancedComponents/FlipFlop.h++
+        src/Components/AdvancedComponents/DualFlipFlop.cpp
+        src/Components/AdvancedComponents/DualFlipFlop.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
