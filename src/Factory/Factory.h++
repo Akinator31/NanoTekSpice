@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 
+#include "Components/AdvancedComponents/BitBinaryCounter.h++"
 #include "Components/AdvancedComponents/DualFlipFlop.h++"
 #include "Components/AdvancedComponents/FlipFlop.h++"
 #include "Components/ElementaryComponents/ElementaryComponents.h++"
@@ -45,7 +46,8 @@ namespace nts {
             { "4071", [] { return CREATE_4071; } },
             { "4081", [] { return CREATE_4081; } },
             { "flipflop", [] { return CREATE_SIMPLE_FLIPFLOP; } },
-            { "4013", [] { return CREATE_4013; } }
+            { "4013", [] { return CREATE_4013; } },
+            { "4040", [] { return CREATE_4040; } },
         };
 
     public:
