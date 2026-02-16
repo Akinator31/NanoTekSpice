@@ -23,4 +23,4 @@ namespace nts {
     };
 }
 
-#define CREATE_HALF std::make_unique<Half4bitsAdder>();
+#define CREATE_HALF std::make_unique<Half4bitsAdder>()

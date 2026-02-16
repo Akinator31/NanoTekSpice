@@ -24,4 +24,4 @@ namespace nts {
     };
 }
 
-#define CREATE_FULL std::make_unique<Full4BitsAdder>();
+#define CREATE_FULL std::make_unique<Full4BitsAdder>()

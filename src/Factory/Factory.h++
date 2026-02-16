@@ -16,6 +16,7 @@
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
 #include "IComponent.h++"
+#include "Components/AdvancedComponents/FourBitsAdder.h++"
 #include "Components/AdvancedComponents/Full4BitsAdder.h++"
 #include "Components/AdvancedComponents/Half4bitsAdder.h++"
 #include "Utils/Utils.h++"
@@ -44,8 +45,9 @@ namespace nts {
             {"4069", [] { return CREATE_4069; }},
             {"4071", [] { return CREATE_4071; }},
             {"4081", [] { return CREATE_4081; }},
-            {"half", [] { return CREATE_HALF }},
-            {"full", [] { return CREATE_FULL }}
+            {"halfBitsAdder", [] { return CREATE_HALF; }},
+            {"fullBitsAdder", [] { return CREATE_FULL; }},
+            {"4008", [] { return CREATE_4008; }}
         };
 
     public:
