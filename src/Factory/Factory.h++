@@ -8,6 +8,9 @@
 #include <memory>
 #include <string>
 
+#include "Components/AdvancedComponents/BitBinaryCounter.h++"
+#include "Components/AdvancedComponents/DualFlipFlop.h++"
+#include "Components/AdvancedComponents/FlipFlop.h++"
 #include "Components/ElementaryComponents/ElementaryComponents.h++"
 #include "Components/GatesComponents/GenericGatesComponents.h++"
 #include "Components/SpecialComponents/Clock.h++"
@@ -47,7 +50,10 @@ namespace nts {
             {"4081", [] { return CREATE_4081; }},
             {"halfBitsAdder", [] { return CREATE_HALF; }},
             {"fullBitsAdder", [] { return CREATE_FULL; }},
-            {"4008", [] { return CREATE_4008; }}
+            {"4008", [] { return CREATE_4008; }},
+            { "flipflop", [] { return CREATE_SIMPLE_FLIPFLOP; } },
+            { "4013", [] { return CREATE_4013; } },
+            { "4040", [] { return CREATE_4040; } },
         };
 
     public:
