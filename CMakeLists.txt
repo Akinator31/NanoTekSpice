@@ -46,6 +46,9 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/DualFlipFlop.h++
         src/Components/AdvancedComponents/BitBinaryCounter.cpp
         src/Components/AdvancedComponents/BitBinaryCounter.h++
+        src/Components/AdvancedComponents/JohnsonDecade.cpp
+        src/Components/AdvancedComponents/JohnsonDecade.h++
+
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
