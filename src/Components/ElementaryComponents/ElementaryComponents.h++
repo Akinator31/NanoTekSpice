@@ -43,18 +43,8 @@ namespace nts {
     std::make_unique<ElementaryComponents>(                                                                  \
         2, [](const Tristate first, [[maybe_unused]] Tristate second) { return !first; });
 #define CREATE_NOR                                                                                           \
-    std::make_unique<ElementaryComponents>(3, [](const Tristate first, [[maybe_unused]] Tristate second) {   \
-        if (first == False || second == False)                                                               \
-            return nts::True;                                                                                \
-        if (first == nts::Undefined && second == nts::Undefined)                                             \
-            return nts::Undefined;                                                                           \
-        return nts::False;                                                                                   \
-    });
+    std::make_unique<ElementaryComponents>(                                                                  \
+        3, [](const Tristate first, [[maybe_unused]] Tristate second) { return !(first || second); });
 #define CREATE_NAND                                                                                          \
-    std::make_unique<ElementaryComponents>(3, [](const Tristate first, [[maybe_unused]] Tristate second) {   \
-        if (first == True && second == True)                                                                 \
-            return nts::False;                                                                               \
-        if (first == nts::Undefined || second == nts::Undefined)                                             \
-            return nts::Undefined;                                                                           \
-        return nts::True;                                                                                    \
-    });
+    std::make_unique<ElementaryComponents>(                                                                  \
+        3, [](const Tristate first, [[maybe_unused]] Tristate second) { return !(first && second); });
