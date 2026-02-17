@@ -8,10 +8,8 @@
 
 #include "Errors/NanoTekSpiceErrors.h++"
 
-namespace nts
-{
-    std::string Utils::trim(const std::string& to_clean)
-    {
+namespace nts {
+    std::string Utils::trim(const std::string& to_clean) {
         const auto start = to_clean.find_first_not_of(" \n\t");
 
         if (start == std::string::npos)
@@ -20,12 +18,9 @@ namespace nts
         return to_clean.substr(start, end - start + 1);
     }
 
-    bool Utils::is_valid_whitespace(const std::string& to_check)
-    {
-        for (const char c : to_check)
-        {
-            if (std::isspace(c) && (c == '\n' || c == '\t' || c == ' '))
-            {
+    bool Utils::is_valid_whitespace(const std::string& to_check) {
+        for (const char c : to_check) {
+            if (std::isspace(c) && (c == '\n' || c == '\t' || c == ' ')) {
                 continue;
             }
             if (!std::isspace(c))
@@ -35,8 +30,7 @@ namespace nts
         return true;
     }
 
-    Tristate Utils::stringToTristate(const std::string& value)
-    {
+    Tristate Utils::stringToTristate(const std::string& value) {
         std::map<std::string, Tristate> tristateString = {
             {"0", False},
             {"1", True},
@@ -48,8 +42,7 @@ namespace nts
         return tristateString[value];
     }
 
-    Tristate operator!(const Tristate value)
-    {
+    Tristate operator!(const Tristate value) {
         if (value == False)
             return True;
         if (value == True)
@@ -57,16 +50,13 @@ namespace nts
         return Undefined;
     }
 
-    Tristate operator&&(const Tristate first, const Tristate second)
-    {
+    Tristate operator&&(const Tristate first, const Tristate second) {
         if (first == true && second == true)
             return True;
         if (first == Undefined && second == Undefined)
             return Undefined;
-        if (first == true || second == true)
-        {
-            if (first == Undefined || second == Undefined)
-            {
+        if (first == true || second == true) {
+            if (first == Undefined || second == Undefined) {
                 return Undefined;
             }
             return False;
@@ -74,8 +64,7 @@ namespace nts
         return False;
     }
 
-    Tristate operator||(const Tristate first, const Tristate second)
-    {
+    Tristate operator||(const Tristate first, const Tristate second) {
         if (first == False && second == False)
             return False;
         if (first == Undefined && second == Undefined)
@@ -87,8 +76,7 @@ namespace nts
         return True;
     }
 
-    Tristate operator^(Tristate first, Tristate second)
-    {
+    Tristate operator^(Tristate first, Tristate second) {
         if (first == True && second == False)
             return True;
         if (first == False && second == True)
@@ -98,8 +86,7 @@ namespace nts
         return False;
     }
 
-    std::ostream& operator<<(std::ostream& stream, const Tristate value)
-    {
+    std::ostream& operator<<(std::ostream& stream, const Tristate value) {
         if (value == Undefined)
             return stream << "U";
         if (value == True)
