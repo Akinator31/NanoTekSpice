@@ -9,13 +9,11 @@
 
 #include "IComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @brief Circuit class to orchestrate all components.
      */
-    class Circuit
-    {
+    class Circuit {
     public:
         /**
          * Circuit constructor.
