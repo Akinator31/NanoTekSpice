@@ -47,6 +47,9 @@ namespace nts {
 
         ntsFile.close();
 
+        if (circuit.getNumberOfComponents() == 0)
+            throw NanoTekSpiceException(SyntaxFileException);
+
         if (mode == UNDEFINED || mode == CHIPSET)
             throw NanoTekSpiceException(SyntaxFileException);
 

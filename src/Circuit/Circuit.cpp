@@ -140,6 +140,10 @@ namespace nts {
                                                              componentPin);
     }
 
+    size_t Circuit::getNumberOfComponents() const {
+        return this->_componentList.size();
+    }
+
     void Circuit::startCli() {
         std::string line;
 

@@ -65,6 +65,12 @@ namespace nts {
         [[noreturn]] void loop(std::string& command);
 
         /**
+         * @brief Return the number of components parse from the NTS file
+         * @return The result as a size_t
+         */
+        size_t getNumberOfComponents() const;
+
+        /**
          * Start the command line interface.
          */
         void startCli();

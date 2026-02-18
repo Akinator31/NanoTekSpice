@@ -41,6 +41,9 @@ namespace nts {
                 throw NanoTekSpiceException(SyntaxFileException);
         }
 
+        if (chipsetName.empty())
+            throw NanoTekSpiceException(SyntaxFileException);
+
         Factory factory;
         std::unique_ptr<IComponent> component = factory.createComponent(chipsetType);
 
