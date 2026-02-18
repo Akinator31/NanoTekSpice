@@ -15,7 +15,12 @@ namespace nts {
         if (start == std::string::npos)
             return "";
         const auto end = to_clean.find_last_not_of(" \n\t");
-        return to_clean.substr(start, end - start + 1);
+
+        std::string trimmedString = to_clean.substr(start, end - start + 1);
+
+        if (const size_t comments = trimmedString.find_last_of('#'); comments != std::string::npos)
+            return trimmedString.substr(0, comments);
+        return trimmedString;
     }
 
     bool Utils::is_valid_whitespace(const std::string& to_check) {
