@@ -28,6 +28,7 @@ namespace nts {
         */
         uint _qOn = 0;
         Tristate _prevClk = Undefined;
+        Tristate _prevCi = Undefined;
 
     public:
         JohsonDecade();
