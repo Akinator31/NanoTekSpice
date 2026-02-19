@@ -24,7 +24,8 @@ namespace nts {
         Tristate ci = this->_connections[13].first->compute(this->_connections[13].second);
         Tristate reset = this->_connections[15].first->compute(this->_connections[15].second);
 
-        if (ci == False && this->_prevClk == False && clk == True) {
+        if ((ci == False && this->_prevClk == False && clk == True) ||
+            (this->_prevCi == True && ci == False)) {
             this->_qOn++;
             if (this->_qOn >= 10)
                 this->_qOn = 0;
@@ -32,6 +33,7 @@ namespace nts {
         if (reset == True)
             this->_qOn = 0;
         this->_prevClk = clk;
+        this->_prevCi = ci;
         if (clk == Undefined || reset == Undefined || ci == Undefined)
             return Undefined;
         if (pin == 12) {
