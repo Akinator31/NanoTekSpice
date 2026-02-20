@@ -5,11 +5,7 @@
 #include "Components/AdvancedComponents/BitBinaryCounter.h++"
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "IComponent.h++"
-#include <cstddef>
-
-static uint getBinaryValueIdx(size_t idx, int value) {
-    return (value >> (idx - 1)) % 2;
-}
+#include "Utils/Utils.h++"
 
 namespace nts {
     BitBinaryCounter::BitBinaryCounter() : AComponent(16, Other) {
@@ -49,29 +45,29 @@ namespace nts {
             return False;
         }
         if (pin == 1)
-            return (Tristate)getBinaryValueIdx(12, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(12, this->_value);
         if (pin == 2)
-            return (Tristate)getBinaryValueIdx(6, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(6, this->_value);
         if (pin == 3)
-            return (Tristate)getBinaryValueIdx(5, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(5, this->_value);
         if (pin == 4)
-            return (Tristate)getBinaryValueIdx(7, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(7, this->_value);
         if (pin == 5)
-            return (Tristate)getBinaryValueIdx(4, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(4, this->_value);
         if (pin == 6)
-            return (Tristate)getBinaryValueIdx(3, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(3, this->_value);
         if (pin == 7)
-            return (Tristate)getBinaryValueIdx(2, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(2, this->_value);
         if (pin == 15)
-            return (Tristate)getBinaryValueIdx(11, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(11, this->_value);
         if (pin == 14)
-            return (Tristate)getBinaryValueIdx(10, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(10, this->_value);
         if (pin == 13)
-            return (Tristate)getBinaryValueIdx(8, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(8, this->_value);
         if (pin == 12)
-            return (Tristate)getBinaryValueIdx(9, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(9, this->_value);
         if (pin == 9)
-            return (Tristate)getBinaryValueIdx(1, this->_value);
+            return (Tristate)Utils::getBinaryValueIdx(1, this->_value);
         return Undefined;
     }
 };
