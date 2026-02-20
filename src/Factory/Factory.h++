@@ -14,6 +14,7 @@
 #include "Components/AdvancedComponents/FourBitsAdder.h++"
 #include "Components/AdvancedComponents/Full4BitsAdder.h++"
 #include "Components/AdvancedComponents/Half4bitsAdder.h++"
+#include "Components/AdvancedComponents/HeightBitShifter.h++"
 #include "Components/AdvancedComponents/JohnsonDecade.h++"
 #include "Components/ElementaryComponents/ElementaryComponents.h++"
 #include "Components/GatesComponents/GenericGatesComponents.h++"
@@ -56,6 +57,7 @@ namespace nts {
             { "4013", [] { return CREATE_4013; } },
             { "4040", [] { return CREATE_4040; } },
             { "4017", [] { return CREATE_4017; } },
+            { "4094", [] { return CREATE_4094 } },
         };
 
     public:
