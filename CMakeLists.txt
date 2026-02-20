@@ -48,6 +48,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/BitBinaryCounter.h++
         src/Components/AdvancedComponents/JohnsonDecade.cpp
         src/Components/AdvancedComponents/JohnsonDecade.h++
+        src/Components/AdvancedComponents/HeightBitShifter.cpp
+        src/Components/AdvancedComponents/HeightBitShifter.h++
 
 )
 
