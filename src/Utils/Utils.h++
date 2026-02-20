@@ -7,13 +7,11 @@
 
 #include "IComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * Utils class used for group all functions that we use often in the program.
      */
-    class Utils
-    {
+    class Utils {
     public:
         /**
          * Remove spaces, line breaks or tabs from a string.
@@ -35,6 +33,14 @@ namespace nts
          * @return The parsed tristate
          */
         static Tristate stringToTristate(const std::string& value);
+
+        /**
+         * Get the value of a bit in an integer.
+         * @param idx The index of the bit to get (starting at 1)
+         * @param value The integer to get the bit from
+         * @return The value of the bit at the given index
+         */
+        static uint getBinaryValueIdx(size_t idx, int value);
     };
 
     /**

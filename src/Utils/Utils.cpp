@@ -35,11 +35,15 @@ namespace nts {
         return true;
     }
 
+    uint Utils::getBinaryValueIdx(size_t idx, int value) {
+        return (value >> (idx - 1)) % 2;
+    }
+
     Tristate Utils::stringToTristate(const std::string& value) {
         std::map<std::string, Tristate> tristateString = {
-            {"0", False},
-            {"1", True},
-            {"U", Undefined},
+            { "0", False },
+            { "1", True },
+            { "U", Undefined },
         };
 
         if (!tristateString.contains(value))
