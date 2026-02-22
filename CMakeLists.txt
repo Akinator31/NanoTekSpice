@@ -50,6 +50,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/JohnsonDecade.h++
         src/Components/AdvancedComponents/HeightBitShifter.cpp
         src/Components/AdvancedComponents/HeightBitShifter.h++
+        src/Components/AdvancedComponents/HeightChannelDataSelector.cpp
+        src/Components/AdvancedComponents/HeightChannelDataSelector.h++
 
 )
 
