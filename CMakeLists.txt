@@ -52,7 +52,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/HeightBitShifter.h++
         src/Components/AdvancedComponents/HeightChannelDataSelector.cpp
         src/Components/AdvancedComponents/HeightChannelDataSelector.h++
-
+        src/Components/AdvancedComponents/Logger.cpp
+        src/Components/AdvancedComponents/Logger.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
