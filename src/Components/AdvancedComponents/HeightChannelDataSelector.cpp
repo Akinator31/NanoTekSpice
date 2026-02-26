@@ -6,25 +6,25 @@
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "IComponent.h++"
 #include <cstddef>
-namespace nts {
-    HeightChannelDataSelector::HeightChannelDataSelector() : AComponent(16, Other) {
-    }
 
-    void HeightChannelDataSelector::simulate(size_t tick) {
+namespace nts {
+    HeightChannelDataSelector::HeightChannelDataSelector() : AComponent(16, Other) {}
+
+    void HeightChannelDataSelector::simulate(const size_t tick) {
         if (this->_lastSimulatedTick == tick)
             return;
         this->_lastSimulatedTick = tick;
     }
 
-    Tristate HeightChannelDataSelector::compute(size_t pin) {
+    Tristate HeightChannelDataSelector::compute(const size_t pin) {
         if (pin != 14)
             throw NanoTekSpiceException(SyntaxFileException);
-        Tristate inhibit = this->_connections[10].first->compute(this->_connections[10].second);
-        Tristate OE = this->_connections[15].first->compute(this->_connections[15].second);
-        Tristate A = this->_connections[11].first->compute(this->_connections[11].second);
-        Tristate B = this->_connections[12].first->compute(this->_connections[12].second);
-        Tristate C = this->_connections[13].first->compute(this->_connections[13].second);
-        int i = (C == True) * 4 + (B == True) * 2 + (A == True);
+        const Tristate inhibit = this->_connections[10].first->compute(this->_connections[10].second);
+        const Tristate OE = this->_connections[15].first->compute(this->_connections[15].second);
+        const Tristate A = this->_connections[11].first->compute(this->_connections[11].second);
+        const Tristate B = this->_connections[12].first->compute(this->_connections[12].second);
+        const Tristate C = this->_connections[13].first->compute(this->_connections[13].second);
+        const int i = (C == True) * 4 + (B == True) * 2 + (A == True);
 
         if (OE == True || OE == Undefined || inhibit == Undefined || A == Undefined || B == Undefined ||
             C == Undefined)

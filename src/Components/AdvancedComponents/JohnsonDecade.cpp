@@ -8,21 +8,20 @@
 #include "IComponent.h++"
 
 namespace nts {
-    JohsonDecade::JohsonDecade() : AComponent(16, Other) {
-    }
+    JohsonDecade::JohsonDecade() : AComponent(16, Other) {}
 
-    void JohsonDecade::simulate(size_t tick) {
+    void JohsonDecade::simulate(const size_t tick) {
         if (this->_lastSimulatedTick == tick)
             return;
         this->_lastSimulatedTick = tick;
     }
 
-    Tristate JohsonDecade::compute(size_t pin) {
+    Tristate JohsonDecade::compute(const size_t pin) {
         if (pin > 12 || pin == 8)
             throw NanoTekSpiceException(SyntaxFileException);
-        Tristate clk = this->_connections[14].first->compute(this->_connections[14].second);
-        Tristate ci = this->_connections[13].first->compute(this->_connections[13].second);
-        Tristate reset = this->_connections[15].first->compute(this->_connections[15].second);
+        const Tristate clk = this->_connections[14].first->compute(this->_connections[14].second);
+        const Tristate ci = this->_connections[13].first->compute(this->_connections[13].second);
+        const Tristate reset = this->_connections[15].first->compute(this->_connections[15].second);
 
         if ((ci == False && this->_prevClk == False && clk == True) ||
             (this->_prevCi == True && ci == False)) {

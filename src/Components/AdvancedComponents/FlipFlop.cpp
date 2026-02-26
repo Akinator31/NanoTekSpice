@@ -8,19 +8,18 @@
 #include "IComponent.h++"
 
 namespace nts {
-    FlipFlop::FlipFlop() : AComponent(6, Other) {
-    }
+    FlipFlop::FlipFlop() : AComponent(6, Other) {}
 
-    void FlipFlop::simulate(size_t tick) {
+    void FlipFlop::simulate(const size_t tick) {
         this->_lastSimulatedTick = tick;
     }
 
-    Tristate FlipFlop::compute(size_t pin) {
+    Tristate FlipFlop::compute(const size_t pin) {
         bool isAsync = false;
-        Tristate cl = this->_connections[3].first->compute(this->_connections[3].second);
-        Tristate r = this->_connections[4].first->compute(this->_connections[4].second);
-        Tristate d = this->_connections[5].first->compute(this->_connections[5].second);
-        Tristate s = this->_connections[6].first->compute(this->_connections[6].second);
+        const Tristate cl = this->_connections[3].first->compute(this->_connections[3].second);
+        const Tristate r = this->_connections[4].first->compute(this->_connections[4].second);
+        const Tristate d = this->_connections[5].first->compute(this->_connections[5].second);
+        const Tristate s = this->_connections[6].first->compute(this->_connections[6].second);
 
         if (s == True || r == True) {
             isAsync = true;
@@ -35,7 +34,8 @@ namespace nts {
             if (d == True) {
                 this->_q = True;
                 this->_qBar = False;
-            } else {
+            }
+            else {
                 this->_q = False;
                 this->_qBar = True;
             }

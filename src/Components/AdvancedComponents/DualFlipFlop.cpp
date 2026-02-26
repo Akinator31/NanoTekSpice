@@ -17,7 +17,7 @@ namespace nts {
         this->_flipflop2 = factory.createComponent("flipflop");
     }
 
-    void DualFlipFlop::setLink(size_t pin, IComponent& other, size_t otherPin) {
+    void DualFlipFlop::setLink(const size_t pin, IComponent& other, const size_t otherPin) {
         if (pin == 0 || pin == 7 || pin > 13)
             throw NanoTekSpiceException(SyntaxFileException);
         if (pin < 8) {
@@ -38,19 +38,18 @@ namespace nts {
             this->_flipflop2->setLink(1, other, otherPin);
     }
 
-    void DualFlipFlop::simulate(size_t tick) {
+    void DualFlipFlop::simulate(const size_t tick) {
         this->_flipflop1->simulate(tick);
         this->_flipflop2->simulate(tick);
     }
 
-    Tristate DualFlipFlop::compute(size_t pin) {
+    Tristate DualFlipFlop::compute(const size_t pin) {
         if (pin != 1 && pin != 2 && pin != 12 && pin != 13)
             throw NanoTekSpiceException(SyntaxFileException);
         if (pin > 2) {
             if (pin == 12)
                 return this->_flipflop2->compute(2);
-            else if (pin == 13)
-                return this->_flipflop2->compute(1);
+            return this->_flipflop2->compute(1);
         }
         return this->_flipflop1->compute(pin);
     }
