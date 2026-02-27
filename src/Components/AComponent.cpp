@@ -31,7 +31,7 @@ namespace nts {
     }
 
     void AComponent::simulate(const size_t tick) {
-        this->_lastComputedTick = tick;
+        this->_lastSimulatedTick = tick;
     }
 
     componentType AComponent::getType() {

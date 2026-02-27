@@ -40,7 +40,7 @@ namespace nts {
          * @param value The integer to get the bit from
          * @return The value of the bit at the given index
          */
-        static uint getBinaryValueIdx(size_t idx, int value);
+        static int getBinaryValueIdx(size_t idx, int value);
     };
 
     /**

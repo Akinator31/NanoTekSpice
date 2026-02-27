@@ -35,15 +35,17 @@ namespace nts {
         return true;
     }
 
-    uint Utils::getBinaryValueIdx(size_t idx, int value) {
+    int Utils::getBinaryValueIdx(const size_t idx, const int value) {
+        if (value < 0)
+            return -1;
         return (value >> (idx - 1)) % 2;
     }
 
     Tristate Utils::stringToTristate(const std::string& value) {
         std::map<std::string, Tristate> tristateString = {
-            { "0", False },
-            { "1", True },
-            { "U", Undefined },
+            {"0", False},
+            {"1", True},
+            {"U", Undefined},
         };
 
         if (!tristateString.contains(value))
@@ -85,7 +87,7 @@ namespace nts {
         return True;
     }
 
-    Tristate operator^(Tristate first, Tristate second) {
+    Tristate operator^(const Tristate first, const Tristate second) {
         if (first == True && second == False)
             return True;
         if (first == False && second == True)
