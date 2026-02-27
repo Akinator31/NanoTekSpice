@@ -5,6 +5,7 @@
 
 #include "Components/AComponent.h++"
 #include "IComponent.h++"
+
 namespace nts {
     class BitBinaryCounter : public AComponent {
         /* PIN DEFINITIONS
@@ -26,8 +27,11 @@ namespace nts {
             pin 16 : VCC
         */
         Tristate _lastClk = Undefined;
-        int _value = 0;
+        int _value = -1;
         void computeVal();
+
+        Tristate cachedClk = Undefined;
+        Tristate cachedReset = Undefined;
 
     public:
         BitBinaryCounter();

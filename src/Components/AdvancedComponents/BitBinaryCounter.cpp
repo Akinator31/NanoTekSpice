@@ -11,11 +11,24 @@ namespace nts {
     BitBinaryCounter::BitBinaryCounter() : AComponent(16, Other) {}
 
     void BitBinaryCounter::computeVal() {
-        const Tristate clk = this->_connections[10].first->compute(this->_connections[10].second);
-        const Tristate r = this->_connections[11].first->compute(this->_connections[11].second);
+        Tristate clk;
+        Tristate r;
+
+        if (this->_lastComputedTick == this->_lastSimulatedTick) {
+            clk = this->cachedClk;
+            r = this->cachedReset;
+        }
+        else {
+            this->cachedClk = this->_connections[10].first->compute(this->_connections[10].second);
+            this->cachedReset = this->_connections[11].first->compute(this->_connections[11].second);
+            clk = this->cachedClk;
+            r = this->cachedReset;
+        }
 
         if (r == True || clk == Undefined) {
             this->_value = 0;
+            if (clk == Undefined)
+                this->_value = -1;
             this->_lastClk = clk;
             return;
         }
@@ -37,7 +50,10 @@ namespace nts {
         if (pin > 15 || pin == 8)
             throw NanoTekSpiceException(SyntaxFileException);
         this->computeVal();
-        Tristate r = this->_connections[11].first->compute(this->_connections[11].second);
+        const Tristate r = this->cachedReset;
+
+        this->_lastComputedTick = this->_lastSimulatedTick;
+
 
         if (r == True) {
             this->_value = 0;

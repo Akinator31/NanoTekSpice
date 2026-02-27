@@ -24,12 +24,12 @@ namespace nts {
             unsigned char result = 0;
 
             for (size_t i = 1; i < 9; i++) {
-                if (!this->_links.contains(i)) {
+                if (!this->_links.contains(static_cast<int>(i))) {
                     isValid = false;
                     break;
                 }
 
-                const Tristate value = this->_links[i].first->compute(1);
+                const Tristate value = this->_links[static_cast<int>(i)].first->compute(1);
 
                 if (value == Undefined) {
                     isValid = false;
@@ -40,7 +40,7 @@ namespace nts {
             }
 
             if (isValid) {
-                _logFile.put(result);
+                _logFile.put(static_cast<char>(result));
                 _logFile.flush();
             }
         }

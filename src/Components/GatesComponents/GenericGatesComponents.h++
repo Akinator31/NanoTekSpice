@@ -11,14 +11,12 @@
 #include "IComponent.h++"
 #include "Components/AComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * Structure that describe information for a specific pin in a component
      * @see GenericGatesComponents
      */
-    struct ComponentMapping
-    {
+    struct ComponentMapping {
         int gateIndex;
         int internalPin;
     };
@@ -26,8 +24,7 @@ namespace nts
     /**
      * Generic class for create GatesComponent
      */
-    class GenericGatesComponents : public AComponent
-    {
+    class GenericGatesComponents : public AComponent {
         std::vector<std::unique_ptr<IComponent>> _gates; ///< Vector that stored gates of a component.
         std::map<int, ComponentMapping> _mapping; ///< Map that describe "pinout" of a component.
 
