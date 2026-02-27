@@ -85,7 +85,7 @@ static const std::map<int, nts::ComponentMapping> FOUR_THREE_COMPONENT_GATES{
 
 static const std::map<int, nts::ComponentMapping> SIX_TWO_COMPONENT_GATES{
     {1, {0, 1}}, {2, {0, 2}}, {3, {1, 1}}, {4, {1, 2}}, {5, {2, 1}}, {6, {2, 2}},
-    {8, {3, 1}}, {9, {3, 2}}, {10, {4, 1}}, {11, {4, 2}}, {12, {5, 1}}, {13, {5, 2}},
+    {8, {5, 2}}, {9, {5, 1}}, {10, {4, 2}}, {11, {4, 1}}, {12, {3, 2}}, {13, {3, 1}},
 };
 
 ///< Macros that allow you to create gates component easily
