@@ -7,6 +7,9 @@
 #include "IComponent.h++"
 
 namespace nts {
+    /**
+     * Class for the HeightChannelDataSelector component
+     */
     class HeightChannelDataSelector : public AComponent {
         /* PIN DEFINITIONS
            pin 1 : X0
@@ -27,10 +30,25 @@ namespace nts {
            pin 16 : VDD
        */
     public:
+        /**
+         * HeightChannelDataSelector constructor
+         */
         HeightChannelDataSelector();
+
+        /**
+         * Simulate a tick for the HeightChannelDataSelector component
+         * @param tick Actual tick of the circuit
+         */
         void simulate(size_t tick) override;
+
+        /**
+         * Compute a specific pin of the HeightChannelDataSelector component
+         * @param pin Pin of the HeightChannelDataSelector component
+         * @return The value of the selected pin of the HeightChannelDataSelector component
+         */
         Tristate compute(size_t pin) override;
     };
 }
 
+///< Macro used for create a HeightChannelDataSelector easily
 #define CREATE_4512 std::make_unique<HeightChannelDataSelector>();
