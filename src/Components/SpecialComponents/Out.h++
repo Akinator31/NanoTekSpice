@@ -15,8 +15,12 @@ namespace nts {
      */
     class Out : public AComponent {
     public:
+        /**
+         * Output constructor
+         */
         Out();
     };
 }
 
+///< Macro used for create a Out easily
 #define CREATE_OUTPUT std::make_unique<Out>();

@@ -9,6 +9,9 @@
 namespace nts {
     class True : public AComponent {
     public:
+        /**
+         * True constructor
+         */
         True() : AComponent(1, Other) {};
 
         /**
