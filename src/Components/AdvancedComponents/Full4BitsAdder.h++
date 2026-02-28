@@ -6,7 +6,7 @@
 #include "Components/AComponent.h++"
 
 namespace nts {
-    class Full4BitsAdder : public AComponent {
+    class FullBitsAdder : public AComponent {
         std::unique_ptr<IComponent> _xor_gate1;
         std::unique_ptr<IComponent> _xor_gate2;
         std::unique_ptr<IComponent> _and_gate1;
@@ -14,7 +14,7 @@ namespace nts {
         std::unique_ptr<IComponent> _or_gate;
 
     public:
-        Full4BitsAdder();
+        FullBitsAdder();
 
         void simulate(size_t tick) override;
 
@@ -24,4 +24,4 @@ namespace nts {
     };
 }
 
-#define CREATE_FULL std::make_unique<Full4BitsAdder>()
+#define CREATE_FULL std::make_unique<FullBitsAdder>()

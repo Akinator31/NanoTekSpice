@@ -7,16 +7,14 @@
 #include "IComponent.h++"
 #include "Components/AComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @class Input
      * @brief Class for Input Special Component
      * @details This class inherit from IComponent interface
      * @see IComponent
      */
-    class Input : public AComponent
-    {
+    class Input : public AComponent {
         ///< Why there are 2 state wtf ??? Because we want to set the value of an Input when we simulate the program,
         /// not when the user set it via the `input=value` command.
         Tristate _currentState = Undefined; ///< Current state of the Input component (used by the compute function)
@@ -47,3 +45,5 @@ namespace nts
         Tristate compute(size_t pin) override;
     };
 }
+
+#define CREATE_INPUT std::make_unique<Input>();

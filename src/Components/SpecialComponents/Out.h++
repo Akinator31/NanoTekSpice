@@ -6,17 +6,17 @@
 #include "IComponent.h++"
 #include "Components/AComponent.h++"
 
-namespace nts
-{
+namespace nts {
     /**
      * @class Out
      * @brief Class for Out Special Component
      * @details This class inherit from IComponent interface
      * @see IComponent
      */
-    class Out : public AComponent
-    {
+    class Out : public AComponent {
     public:
         Out();
     };
 }
+
+#define CREATE_OUTPUT std::make_unique<Out>();

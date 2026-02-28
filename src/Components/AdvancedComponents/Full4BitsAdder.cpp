@@ -8,7 +8,7 @@
 #include "Factory/Factory.h++"
 
 namespace nts {
-    Full4BitsAdder::Full4BitsAdder() : AComponent(4, Other) {
+    FullBitsAdder::FullBitsAdder() : AComponent(4, Other) {
         Factory factory;
 
         this->_xor_gate1 = factory.createComponent("xor");
@@ -24,7 +24,7 @@ namespace nts {
         this->_or_gate->setLink(2, *this->_and_gate2, 3);
     }
 
-    void Full4BitsAdder::simulate(const size_t tick) {
+    void FullBitsAdder::simulate(const size_t tick) {
         this->_xor_gate1->simulate(tick);
         this->_xor_gate2->simulate(tick);
         this->_and_gate1->simulate(tick);
@@ -32,7 +32,7 @@ namespace nts {
         this->_or_gate->simulate(tick);
     }
 
-    Tristate Full4BitsAdder::compute(const size_t pin) {
+    Tristate FullBitsAdder::compute(const size_t pin) {
         if (pin == 4) {
             return this->_xor_gate2->compute(3);
         }
@@ -41,7 +41,7 @@ namespace nts {
         throw NanoTekSpiceException(SyntaxFileException);
     }
 
-    void Full4BitsAdder::setLink(const size_t pin, IComponent& other, const size_t otherPin) {
+    void FullBitsAdder::setLink(const size_t pin, IComponent& other, const size_t otherPin) {
         if (pin == 1) {
             this->_xor_gate1->setLink(2, other, otherPin);
             this->_and_gate1->setLink(1, other, otherPin);
