@@ -35,8 +35,8 @@ namespace nts {
 
     Tristate HeightBitShifter::compute(const size_t pin) {
         int value = this->_memValue;
-        Tristate strobe = this->_connections[1].first->compute(this->_connections[1].second);
-        Tristate OE = this->_connections[15].first->compute(this->_connections[15].second);
+        const Tristate strobe = this->_connections[1].first->compute(this->_connections[1].second);
+        const Tristate OE = this->_connections[15].first->compute(this->_connections[15].second);
 
         if (pin >= 15 || (pin >= 1 && pin <= 3) || pin == 8)
             throw NanoTekSpiceException(SyntaxFileException);
