@@ -12,7 +12,7 @@
 #include "Components/AdvancedComponents/DualFlipFlop.h++"
 #include "Components/AdvancedComponents/FlipFlop.h++"
 #include "Components/AdvancedComponents/FourBitsAdder.h++"
-#include "Components/AdvancedComponents/Full4BitsAdder.h++"
+#include "Components/AdvancedComponents/FullBitsAdder.h++"
 #include "Components/AdvancedComponents/Half4bitsAdder.h++"
 #include "Components/AdvancedComponents/HeightBitShifter.h++"
 #include "Components/AdvancedComponents/HeightChannelDataSelector.h++"

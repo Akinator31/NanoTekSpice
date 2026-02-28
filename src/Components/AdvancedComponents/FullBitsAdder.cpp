@@ -2,7 +2,7 @@
 // Created by pavel on 13/02/2026.
 //
 
-#include "Full4BitsAdder.h++"
+#include "FullBitsAdder.h++"
 
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "Factory/Factory.h++"
