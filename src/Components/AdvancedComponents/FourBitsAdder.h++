@@ -11,7 +11,7 @@
 
 namespace nts {
     class FourBitsAdder : public AComponent {
-        std::unique_ptr<IComponent> _halfBitsAdder;
+        std::unique_ptr<IComponent> _fullBitsAdder0;
         std::unique_ptr<IComponent> _fullBitsAdder1;
         std::unique_ptr<IComponent> _fullBitsAdder2;
         std::unique_ptr<IComponent> _fullBitsAdder3;
