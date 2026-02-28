@@ -10,7 +10,7 @@
 namespace nts {
     BitBinaryCounter::BitBinaryCounter() : AComponent(16, Other) {}
 
-    void BitBinaryCounter::computeVal() {
+    void BitBinaryCounter::_computeVal() {
         Tristate clk;
         Tristate r;
 
@@ -49,7 +49,7 @@ namespace nts {
     Tristate BitBinaryCounter::compute(const size_t pin) {
         if (pin > 15 || pin == 8)
             throw NanoTekSpiceException(SyntaxFileException);
-        this->computeVal();
+        this->_computeVal();
         const Tristate r = this->cachedReset;
 
         this->_lastComputedTick = this->_lastSimulatedTick;

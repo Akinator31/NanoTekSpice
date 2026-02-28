@@ -42,7 +42,7 @@ namespace nts {
 #define CREATE_NOT                                                                                           \
     std::make_unique<ElementaryComponents>(                                                                  \
         2, [](const Tristate first, [[maybe_unused]] Tristate second) { return !first; });
-#define CREATE_NOR                                                                                           \
+#define CREATE_NOR                                                                                            \
     std::make_unique<ElementaryComponents>(                                                                  \
         3, [](const Tristate first, [[maybe_unused]] Tristate second) { return !(first || second); });
 #define CREATE_NAND                                                                                          \
