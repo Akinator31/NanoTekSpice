@@ -56,4 +56,4 @@ namespace nts {
 }
 
 ///< Macro used for create a JohnsonDecade easily
-#define CREATE_4017 std::make_unique<JohsonDecade>();
+#define CREATE_4017 std::make_unique<JohnsonDecade>();
