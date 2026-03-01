@@ -12,8 +12,8 @@
 #include "Components/AdvancedComponents/DualFlipFlop.h++"
 #include "Components/AdvancedComponents/FlipFlop.h++"
 #include "Components/AdvancedComponents/FourBitsAdder.h++"
-#include "Components/AdvancedComponents/Full4BitsAdder.h++"
-#include "Components/AdvancedComponents/Half4bitsAdder.h++"
+#include "Components/AdvancedComponents/FullBitsAdder.h++"
+#include "Components/AdvancedComponents/HalfBitsAdder.h++"
 #include "Components/AdvancedComponents/HeightBitShifter.h++"
 #include "Components/AdvancedComponents/HeightChannelDataSelector.h++"
 #include "Components/AdvancedComponents/JohnsonDecade.h++"
@@ -35,11 +35,11 @@ namespace nts {
     class Factory {
         ///< The map that stored component constructor functions
         std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
-            {"input", [] { return std::make_unique<Input>(); }},
-            {"output", [] { return std::make_unique<Out>(); }},
-            {"true", [] { return std::make_unique<class True>(); }},
-            {"false", [] { return std::make_unique<class False>(); }},
-            {"clock", [] { return std::make_unique<Clock>(); }},
+            {"input", [] { return CREATE_INPUT; }},
+            {"output", [] { return CREATE_OUTPUT; }},
+            {"true", [] { return CREATE_TRUE; }},
+            {"false", [] { return CREATE_FALSE; }},
+            {"clock", [] { return CREATE_CLOCK; }},
             {"and", [] { return CREATE_AND; }},
             {"or", [] { return CREATE_OR; }},
             {"xor", [] { return CREATE_XOR; }},

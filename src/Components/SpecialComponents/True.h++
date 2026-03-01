@@ -6,14 +6,13 @@
 #include "IComponent.h++"
 #include "Components/AComponent.h++"
 
-namespace nts
-{
-    class True : public AComponent
-    {
+namespace nts {
+    class True : public AComponent {
     public:
-        True() : AComponent(1, Other)
-        {
-        };
+        /**
+         * True constructor
+         */
+        True() : AComponent(1, Other) {};
 
         /**
          * @brief Compute the result on the selected pin. Here, we always return Tristate::True;
@@ -23,3 +22,5 @@ namespace nts
         Tristate compute(size_t pin) override;
     };
 }
+
+#define CREATE_TRUE std::make_unique<class True>();

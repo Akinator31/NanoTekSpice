@@ -8,15 +8,15 @@
 #include "IComponent.h++"
 
 namespace nts {
-    JohsonDecade::JohsonDecade() : AComponent(16, Other) {}
+    JohnsonDecade::JohnsonDecade() : AComponent(16, Other) {}
 
-    void JohsonDecade::simulate(const size_t tick) {
+    void JohnsonDecade::simulate(const size_t tick) {
         if (this->_lastSimulatedTick == tick)
             return;
         this->_lastSimulatedTick = tick;
     }
 
-    Tristate JohsonDecade::compute(const size_t pin) {
+    Tristate JohnsonDecade::compute(const size_t pin) {
         if (pin > 12 || pin == 8)
             throw NanoTekSpiceException(SyntaxFileException);
         const Tristate clk = this->_connections[14].first->compute(this->_connections[14].second);

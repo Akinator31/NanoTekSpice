@@ -23,13 +23,6 @@ namespace nts {
         return this->_currentValue;
     }
 
-    Tristate AComponent::getInputValue(const size_t pin) {
-        if (!this->_connections.contains(pin)) {
-            throw NanoTekSpiceException(SyntaxFileException);
-        }
-        return this->_connections[pin].first->compute(this->_connections[pin].second);
-    }
-
     void AComponent::simulate(const size_t tick) {
         this->_lastSimulatedTick = tick;
     }

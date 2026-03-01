@@ -38,8 +38,10 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/ElementaryComponents/ElementaryComponents.h++
         src/Components/AComponent.cpp
         src/Components/AComponent.h++
-        src/Components/AdvancedComponents/Full4BitsAdder.cpp
-        src/Components/AdvancedComponents/Full4BitsAdder.h++
+        src/Components/AdvancedComponents/FullBitsAdder.cpp
+        src/Components/AdvancedComponents/FullBitsAdder.h++
+        src/Components/AdvancedComponents/HalfBitsAdder.cpp
+        src/Components/AdvancedComponents/HalfBitsAdder.h++
         src/Components/AdvancedComponents/FlipFlop.cpp
         src/Components/AdvancedComponents/FlipFlop.h++
         src/Components/AdvancedComponents/DualFlipFlop.cpp
