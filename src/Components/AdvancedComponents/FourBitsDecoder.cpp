@@ -5,7 +5,6 @@
 #include "Components/AdvancedComponents/FourBitsDecoder.h++"
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "IComponent.h++"
-#include "Utils/Utils.h++"
 
 namespace nts {
     FourBitsDecoder::FourBitsDecoder() : AComponent(24, Other) {
@@ -20,16 +19,18 @@ namespace nts {
         Tristate D = this->_connections[22].first->compute(this->_connections[22].second);
 
         if (inhib == True) {
-            this->_value = 0;
+            this->_value = -2;
             return;
         }
-        if (strobe == False)
+        if (strobe == False) {
+            this->_value = -2;
             return;
+        }
         if (A == Undefined || B == Undefined || C == Undefined || D == Undefined) {
             this->_value = -1;
             return;
         }
-        this->_value = (A * 8) + (B * 4) + (C * 2) + D;
+        this->_value = (D * 8) + (C * 4) + (B * 2) + A;
     }
 
     void FourBitsDecoder::simulate(const size_t tick) {
@@ -47,38 +48,40 @@ namespace nts {
         this->computeVal();
         if (this->_value == -1)
             return Undefined;
+        if (this->_value == -2)
+            return False;
         if (pin == 4)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(8, this->_value));
+            return static_cast<Tristate>(this->_value == 7);
         if (pin == 5)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(7, this->_value));
+            return static_cast<Tristate>(this->_value == 6);
         if (pin == 6)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(6, this->_value));
+            return static_cast<Tristate>(this->_value == 5);
         if (pin == 7)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(5, this->_value));
+            return static_cast<Tristate>(this->_value == 4);
         if (pin == 8)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(4, this->_value));
+            return static_cast<Tristate>(this->_value == 3);
         if (pin == 9)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(3, this->_value));
+            return static_cast<Tristate>(this->_value == 1);
         if (pin == 10)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(2, this->_value));
+            return static_cast<Tristate>(this->_value == 2);
         if (pin == 11)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(1, this->_value));
+            return static_cast<Tristate>(this->_value == 0);
         if (pin == 13)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(14, this->_value));
+            return static_cast<Tristate>(this->_value == 13);
         if (pin == 14)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(13, this->_value));
+            return static_cast<Tristate>(this->_value == 12);
         if (pin == 15)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(16, this->_value));
+            return static_cast<Tristate>(this->_value == 15);
         if (pin == 16)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(15, this->_value));
+            return static_cast<Tristate>(this->_value == 14);
         if (pin == 17)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(10, this->_value));
+            return static_cast<Tristate>(this->_value == 9);
         if (pin == 18)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(9, this->_value));
+            return static_cast<Tristate>(this->_value == 8);
         if (pin == 19)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(12, this->_value));
+            return static_cast<Tristate>(this->_value == 11);
         if (pin == 20)
-            return static_cast<Tristate>(Utils::getBinaryValueIdx(11, this->_value));
+            return static_cast<Tristate>(this->_value == 10);
         return Undefined;
     }
 }
