@@ -56,6 +56,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/HeightChannelDataSelector.h++
         src/Components/AdvancedComponents/Logger.cpp
         src/Components/AdvancedComponents/Logger.h++
+        src/Components/AdvancedComponents/FourBitsDecoder.cpp
+        src/Components/AdvancedComponents/FourBitsDecoder.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
