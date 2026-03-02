@@ -19,6 +19,7 @@
 #include "Components/AdvancedComponents/HeightChannelDataSelector.h++"
 #include "Components/AdvancedComponents/JohnsonDecade.h++"
 #include "Components/AdvancedComponents/Logger.h++"
+#include "Components/AdvancedComponents/ROM.h++"
 #include "Components/ElementaryComponents/ElementaryComponents.h++"
 #include "Components/GatesComponents/GenericGatesComponents.h++"
 #include "Components/SpecialComponents/Clock.h++"
@@ -63,6 +64,7 @@ namespace nts {
                 { "4094", [] { return CREATE_4094; } },
                 { "4512", [] { return CREATE_4512; } },
                 { "4514", [] { return CREATE_4514; } },
+                { "2716", [] { return CREATE_2716; } },
                 { "logger", [] { return CREATE_LOGGER; } },
             };
 

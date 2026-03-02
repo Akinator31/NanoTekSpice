@@ -58,6 +58,8 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/Logger.h++
         src/Components/AdvancedComponents/FourBitsDecoder.cpp
         src/Components/AdvancedComponents/FourBitsDecoder.h++
+        src/Components/AdvancedComponents/ROM.cpp
+        src/Components/AdvancedComponents/ROM.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)
