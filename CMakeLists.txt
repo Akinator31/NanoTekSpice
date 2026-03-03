@@ -10,7 +10,6 @@ add_executable(nanotekspice ${ALL_SRC}
         include/IComponent.h++
         src/Components/SpecialComponents/Input.cpp
         src/Components/SpecialComponents/Input.h++
-        src/Factory/Factory.cpp
         src/Factory/Factory.h++
         src/Circuit/Circuit.cpp
         src/Components/SpecialComponents/Out.cpp
@@ -58,8 +57,10 @@ add_executable(nanotekspice ${ALL_SRC}
         src/Components/AdvancedComponents/Logger.h++
         src/Components/AdvancedComponents/FourBitsDecoder.cpp
         src/Components/AdvancedComponents/FourBitsDecoder.h++
-        src/Components/AdvancedComponents/ROM.cpp
-        src/Components/AdvancedComponents/ROM.h++
+        src/Components/AdvancedComponents/Rom.cpp
+        src/Components/AdvancedComponents/Rom.h++
+        src/Components/AdvancedComponents/Ram.cpp
+        src/Components/AdvancedComponents/Ram.h++
 )
 
 target_compile_options(nanotekspice PRIVATE -Wall -Wextra -Werror)

@@ -78,7 +78,7 @@ namespace nts {
      * Allow you to print a Tristate through an ostream
      * @param stream The stream
      * @param value The Tristate you want to print
-     * @return Result
+     * @return ResultTristate operator==(const Tristate& value);
      */
     std::ostream& operator<<(std::ostream& stream, Tristate value);
 }
