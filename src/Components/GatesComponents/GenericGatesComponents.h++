@@ -79,8 +79,8 @@ namespace nts {
 }
 
 static const std::map<int, nts::ComponentMapping> FOUR_THREE_COMPONENT_GATES{
-    {1, {0, 2}}, {2, {0, 1}}, {3, {0, 3}}, {4, {1, 3}}, {5, {1, 1}}, {6, {1, 2}},
-    {8, {2, 1}}, {9, {2, 2}}, {10, {2, 3}}, {11, {3, 3}}, {12, {3, 2}}, {13, {3, 1}},
+    {1, {0, 2}}, {2, {0, 1}}, {3, {0, 3}}, {4, {1, 3}}, {5, {1, 2}}, {6, {1, 1}},
+    {8, {2, 2}}, {9, {2, 1}}, {10, {2, 3}}, {11, {3, 3}}, {12, {3, 2}}, {13, {3, 1}},
 };
 
 static const std::map<int, nts::ComponentMapping> SIX_TWO_COMPONENT_GATES{
