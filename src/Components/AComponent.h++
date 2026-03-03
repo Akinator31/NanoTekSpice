@@ -13,15 +13,15 @@ namespace nts {
      * Abstract class of IComponent interface used for most components.
      */
     class AComponent : public IComponent {
+    protected:
         size_t _maxPins; ///< Max pin of a component
         componentType _typeComponent; ///< Type of component @see componentType
-
-    public:
         std::size_t _lastComputedTick = -1; ///< Last computed tick for compare if the value has already been computed.
         std::size_t _lastSimulatedTick = 0; ///< Last simulated tick.
         Tristate _currentValue = Undefined; ///< Current value on a component (use for component like Input, Output...)
         std::map<size_t, std::pair<IComponent*, size_t>> _connections; ///< Component connections
 
+    public:
         /**
          * Create a component
          * @param maxPin Number of pin of the component
