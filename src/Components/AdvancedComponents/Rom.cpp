@@ -2,7 +2,7 @@
 // Created by Noah on 02/03/2026.
 //
 
-#include "Components/AdvancedComponents/ROM.h++"
+#include "Components/AdvancedComponents/Ram.h++"
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "IComponent.h++"
 #include "Utils/Utils.h++"
@@ -37,7 +37,7 @@ namespace nts {
         Tristate A1 = this->_connections[7].first->compute(this->_connections[7].second);
         Tristate A0 = this->_connections[8].first->compute(this->_connections[8].second);
         size_t address = (A10 * 1024) + (A9 * 512) + (A8 * 256) + (A7 * 128) + (A6 * 64) + (A5 * 32) +
-                         (A4 * 16) + (A3 * 8) + (A2 * 4) + (A1 * 2) + A0;
+            (A4 * 16) + (A3 * 8) + (A2 * 4) + (A1 * 2) + A0;
 
         if (A10 == Undefined || A9 == Undefined || A8 == Undefined || A7 == Undefined || A6 == Undefined ||
             A5 == Undefined || A4 == Undefined || A3 == Undefined || A2 == Undefined || A1 == Undefined ||

@@ -19,7 +19,7 @@
 #include "Components/AdvancedComponents/HeightChannelDataSelector.h++"
 #include "Components/AdvancedComponents/JohnsonDecade.h++"
 #include "Components/AdvancedComponents/Logger.h++"
-#include "Components/AdvancedComponents/ROM.h++"
+#include "Components/AdvancedComponents/Rom.h++"
 #include "Components/ElementaryComponents/ElementaryComponents.h++"
 #include "Components/GatesComponents/GenericGatesComponents.h++"
 #include "Components/SpecialComponents/Clock.h++"
@@ -28,55 +28,61 @@
 #include "Components/SpecialComponents/Out.h++"
 #include "Components/SpecialComponents/True.h++"
 #include "IComponent.h++"
+#include "Components/AdvancedComponents/Ram.h++"
 #include "Utils/Utils.h++"
 
 namespace nts {
     /**
      * @brief Factory class for create components
      */
+    template <typename ComponentType = std::string>
     class Factory {
-            ///< The map that stored component constructor functions
-            std::map<std::string, std::function<std::unique_ptr<IComponent>()>> _builder = {
-                { "input", [] { return CREATE_INPUT; } },
-                { "output", [] { return CREATE_OUTPUT; } },
-                { "true", [] { return CREATE_TRUE; } },
-                { "false", [] { return CREATE_FALSE; } },
-                { "clock", [] { return CREATE_CLOCK; } },
-                { "and", [] { return CREATE_AND; } },
-                { "or", [] { return CREATE_OR; } },
-                { "xor", [] { return CREATE_XOR; } },
-                { "nor", [] { return CREATE_NOR; } },
-                { "nand", [] { return CREATE_NAND; } },
-                { "not", [] { return CREATE_NOT; } },
-                { "4001", [] { return CREATE_4001; } },
-                { "4011", [] { return CREATE_4011; } },
-                { "4030", [] { return CREATE_4030; } },
-                { "4069", [] { return CREATE_4069; } },
-                { "4071", [] { return CREATE_4071; } },
-                { "4081", [] { return CREATE_4081; } },
-                { "halfBitsAdder", [] { return CREATE_HALF; } },
-                { "fullBitsAdder", [] { return CREATE_FULL; } },
-                { "4008", [] { return CREATE_4008; } },
-                { "flipflop", [] { return CREATE_SIMPLE_FLIPFLOP; } },
-                { "4013", [] { return CREATE_4013; } },
-                { "4040", [] { return CREATE_4040; } },
-                { "4017", [] { return CREATE_4017; } },
-                { "4094", [] { return CREATE_4094; } },
-                { "4512", [] { return CREATE_4512; } },
-                { "4514", [] { return CREATE_4514; } },
-                { "2716", [] { return CREATE_2716; } },
-                { "logger", [] { return CREATE_LOGGER; } },
-            };
+        std::map<ComponentType, std::function<std::unique_ptr<IComponent>()>> builder = {
+            {"input", [] { return CREATE_INPUT; }},
+            {"output", [] { return CREATE_OUTPUT; }},
+            {"true", [] { return CREATE_TRUE; }},
+            {"false", [] { return CREATE_FALSE; }},
+            {"clock", [] { return CREATE_CLOCK; }},
+            {"and", [] { return CREATE_AND; }},
+            {"or", [] { return CREATE_OR; }},
+            {"xor", [] { return CREATE_XOR; }},
+            {"nor", [] { return CREATE_NOR; }},
+            {"nand", [] { return CREATE_NAND; }},
+            {"not", [] { return CREATE_NOT; }},
+            {"4001", [] { return CREATE_4001; }},
+            {"4011", [] { return CREATE_4011; }},
+            {"4030", [] { return CREATE_4030; }},
+            {"4069", [] { return CREATE_4069; }},
+            {"4071", [] { return CREATE_4071; }},
+            {"4081", [] { return CREATE_4081; }},
+            {"halfBitsAdder", [] { return CREATE_HALF; }},
+            {"fullBitsAdder", [] { return CREATE_FULL; }},
+            {"4008", [] { return CREATE_4008; }},
+            {"flipflop", [] { return CREATE_SIMPLE_FLIPFLOP; }},
+            {"4013", [] { return CREATE_4013; }},
+            {"4040", [] { return CREATE_4040; }},
+            {"4017", [] { return CREATE_4017; }},
+            {"4094", [] { return CREATE_4094; }},
+            {"4512", [] { return CREATE_4512; }},
+            {"4514", [] { return CREATE_4514; }},
+            {"2716", [] { return CREATE_2716; }},
+            {"4801", [] { return CREATE_4801; }},
+            {"logger", [] { return CREATE_LOGGER; }},
+        };
 
-        public:
-            Factory() = default;
-            /**
-             * Factory constructor. You can use it to create every component.
-             * @param type The of the component we want to create.
-             * @throw std::exception Throw an exception if the type of the component given as parameter isn't
-             * support by the program.
-             * @return std::unique_ptr<IComponent> The component newly created.
-             */
-            std::unique_ptr<IComponent> createComponent(const std::string& type);
+    public:
+        Factory() = default;
+        /**
+         * Factory constructor. You can use it to create every component.
+         * @param type The of the component we want to create.
+         * @throw std::exception Throw an exception if the type of the component given as parameter isn't
+         * support by the program.
+         * @return std::unique_ptr<IComponent> The component newly created.
+         */
+        std::unique_ptr<IComponent> createComponent(const ComponentType& type) {
+            if (const auto it = builder.find(type); it != builder.end())
+                return it->second();
+            return nullptr;
+        }
     };
-} // namespace nts
+}
