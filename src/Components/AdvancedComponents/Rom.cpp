@@ -2,7 +2,7 @@
 // Created by Noah on 02/03/2026.
 //
 
-#include "Components/AdvancedComponents/Ram.h++"
+#include "Components/AdvancedComponents/Rom.h++"
 #include "Errors/NanoTekSpiceErrors.h++"
 #include "IComponent.h++"
 #include "Utils/Utils.h++"
