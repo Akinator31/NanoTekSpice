@@ -22,10 +22,8 @@ namespace nts {
             this->_value = -2;
             return;
         }
-        if (strobe == False) {
-            this->_value = -2;
+        if (strobe == False)
             return;
-        }
         if (A == Undefined || B == Undefined || C == Undefined || D == Undefined) {
             this->_value = -1;
             return;

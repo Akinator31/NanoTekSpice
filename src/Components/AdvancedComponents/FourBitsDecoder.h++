@@ -8,7 +8,9 @@
 #include "IComponent.h++"
 
 namespace nts {
-
+    /**
+     * FourBitsDecoder
+     */
     class FourBitsDecoder : public AComponent {
             /* PIN DEFINITIONS
                 pin 1 : STROBE
@@ -37,19 +39,36 @@ namespace nts {
                 pin 24 : VDD
             */
         public:
+            /**
+             * Constructor for FourBitsDecoder
+             */
             FourBitsDecoder();
             virtual ~FourBitsDecoder() = default;
 
+            /**
+             * Simulate a tick for the FourBitsDecoder component
+             * @param tick Actual tick of the circuit
+             */
             void simulate(std::size_t tick) override;
+            /**
+             * Compute a specific pin of the FourBitsDecoder component
+             * @param pin Pin of the FourBitsDecoder component
+             * @return The value of the selected pin of the FourBitsDecoder component
+             */
             Tristate compute(std::size_t pin) override;
 
         private:
+            /**
+             * Compute the value of the FourBitsDecoder component based on its inputs
+             */
             void computeVal();
 
-            int _value = -1;
-            Tristate _lastClk = Undefined;
-            std::size_t _lastSimulatedTick = 0;
+            int _value = -1; ///< Internal value of the FourBitsDecoder component, -1 for Undefined, -2 for
+                             ///< False, 0-15 for True
+            Tristate _lastClk = Undefined;      ///< Last clock value
+            std::size_t _lastSimulatedTick = 0; ///< Last simulated tick
     };
 }
 
+///< Macro used for create a FourBitsDecoder easily
 #define CREATE_4514 std::make_unique<nts::FourBitsDecoder>()
