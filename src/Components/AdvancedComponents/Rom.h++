@@ -8,6 +8,9 @@
 #include <sys/types.h>
 #include <vector>
 namespace nts {
+    /*
+     * Class for the Rom component
+     */
     class Rom : public AComponent {
             /* PIN DEFINITIONS
                 pin 1 : A7
@@ -35,15 +38,30 @@ namespace nts {
                 pin 23 : A8
                 pin 24 : VCC
             */
-            void computeVal();
-            int _value = -1;
-            std::vector<char> _romData;
+            void computeVal(); ///< Compute the value of the Rom component based on the address pins and the
+                               ///< content of the ROM
+            int _value = -1;   ///< Internal value of the Rom component
+            std::vector<char> _romData; ///< Vector containing the data of the ROM loaded from the file
 
         public:
+            /**
+             * @brief Construct a new Rom object
+             *
+             */
             Rom();
+            /**
+             * @brief Simulate a tick for the Rom component
+             * @param tick Actual tick of the circuit
+             */
             void simulate(size_t tick) override;
+            /**
+             * @brief Compute a specific pin of the Rom component
+             * @param pin Pin of the Rom component
+             * @return The value of the selected pin of the Rom component
+             */
             Tristate compute(size_t pin) override;
     };
 }
 
+///< Macro for create a Rom component
 #define CREATE_2716 std::make_unique<nts::Rom>();
