@@ -4,6 +4,7 @@
 
 #include "Ram.h++"
 
+#include <iostream>
 #include <ranges>
 
 #include "Components/SpecialComponents/Input.h++"
@@ -32,11 +33,12 @@ namespace nts {
         constexpr std::array<int, 10> addr_pins = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9};
         int address = 0;
 
-        for (int i = 0; i < 10; ++i) {
-            const Tristate val = this->getInputOnPin(addr_pins[i]);
-            if (val == Undefined) return -1;
-            if (val == True) address |= (1 << i);
-        }
+        address = getInputOnPin(addr_pins[0]) * 512 + getInputOnPin(addr_pins[1]) * 256 +
+            getInputOnPin(addr_pins[2]) * 128 + getInputOnPin(addr_pins[3])
+            * 64 + getInputOnPin(addr_pins[4]) * 32 +
+            getInputOnPin(addr_pins[5]) * 16 + getInputOnPin(addr_pins[6]) * 8 + getInputOnPin(addr_pins[7]) * 4 +
+            getInputOnPin(addr_pins[8]) * 2 + getInputOnPin(addr_pins[9]);
+
         return address;
     }
 
@@ -62,8 +64,11 @@ namespace nts {
     void Ram::simulate(const size_t tick) {
         this->_lastSimulatedTick = tick;
 
-        for (auto& [fst, snd] : this->_connections | std::views::values) {
-            fst->simulate(tick);
+        for (size_t i = 0; i < 24; i++) {
+            if (this->_links.contains(i)) {
+                for (const auto& key : this->_links[i] | std::views::keys)
+                    key->simulate(tick);
+            }
         }
 
         const Tristate notCE = this->getInputOnPin(NOT_CE);
@@ -84,15 +89,12 @@ namespace nts {
         const Tristate notWE = this->getInputOnPin(NOT_WE);
         const int address = this->getAddress();
 
-        if (notCE == True)
-            return Undefined;
-        if (notCE == False && notOE == True && notWE == True)
-            return Undefined;
-        if (address == -1)
-            return Undefined;
-        if (pin <= DQ2)
-            return this->_memory[address][pin - 9];
-        return this->_memory[address][pin - 10];
+        if (notCE == False && notOE == False && notWE == True && address >= 0 && address <= 1024) {
+            if (pin <= DQ2)
+                return this->_memory[address][pin - 9];
+            return this->_memory[address][pin - 10];
+        }
+        return Undefined;
     }
 
     void Ram::setLink(const size_t pin, IComponent& other, size_t otherPin) {
