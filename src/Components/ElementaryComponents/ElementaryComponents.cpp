@@ -6,6 +6,8 @@
 
 #include "ElementaryComponents.h++"
 
+#include <iostream>
+
 #include "Factory/Factory.h++"
 
 namespace nts {
@@ -22,8 +24,8 @@ namespace nts {
             return this->_currentValue;
         if (this->_numberOfPins == 3) {
             if (pin == 3) {
+                this->_lastComputedTick += 1;
                 const Tristate value1 = this->_connections[1].first->compute(this->_connections[1].second);
-                this->_lastComputedTick = this->_lastSimulatedTick;
                 const Tristate value2 = this->_connections[2].first->compute(this->_connections[2].second);
 
                 this->_currentValue = this->_operationFunc(value1, value2);
