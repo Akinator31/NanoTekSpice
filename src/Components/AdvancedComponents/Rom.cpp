@@ -53,7 +53,7 @@ namespace nts {
     }
 
     Tristate Rom::compute(size_t pin) {
-        if (!(pin >= 9 && pin <= 11) && !(pin >= 13 && pin <= 17))
+        if (pin > 24)
             throw NanoTekSpiceException(SyntaxFileException);
         Tristate CE = this->_connections[18].first->compute(this->_connections[18].second);
         Tristate OE = this->_connections[20].first->compute(this->_connections[20].second);
