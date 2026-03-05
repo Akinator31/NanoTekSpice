@@ -10,18 +10,12 @@ namespace nts {
     FourBitsDecoder::FourBitsDecoder() : AComponent(24, Other) {
     }
 
-    void FourBitsDecoder::computeVal() {
-        Tristate strobe = this->_connections[1].first->compute(this->_connections[1].second);
-        Tristate inhib = this->_connections[23].first->compute(this->_connections[23].second);
+    void FourBitsDecoder::computeVal(Tristate& strobe) {
         Tristate A = this->_connections[2].first->compute(this->_connections[2].second);
         Tristate B = this->_connections[3].first->compute(this->_connections[3].second);
         Tristate C = this->_connections[21].first->compute(this->_connections[21].second);
         Tristate D = this->_connections[22].first->compute(this->_connections[22].second);
 
-        if (inhib == True) {
-            this->_value = -2;
-            return;
-        }
         if (strobe == False)
             return;
         if (A == Undefined || B == Undefined || C == Undefined || D == Undefined) {
@@ -41,9 +35,15 @@ namespace nts {
 
         if (!(pin >= 4 && pin <= 11) && !(pin >= 13 && pin <= 20))
             throw NanoTekSpiceException(SyntaxFileException);
-        if (strobe == Undefined || inhib == Undefined)
+        if (inhib == True) {
+            this->_value = -2;
+            return False;
+        }
+        if (strobe == Undefined || inhib == Undefined) {
+            this->_value = -1;
             return Undefined;
-        this->computeVal();
+        }
+        this->computeVal(strobe);
         if (this->_value == -1)
             return Undefined;
         if (this->_value == -2)
