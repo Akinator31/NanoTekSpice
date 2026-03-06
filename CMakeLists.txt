@@ -68,23 +68,26 @@ target_include_directories(nanotekspice PRIVATE include src)
 
 # TEST CRITERION
 
-enable_testing()
+option(BUILD_TESTS "Build unit tests" OFF)
 
-find_library(CRITERION_LIB criterion)
+if (BUILD_TESTS)
+    enable_testing()
+    find_library(CRITERION_LIB criterion)
 
-if (CRITERION_LIB)
-    file(GLOB_RECURSE LIB_SRC "src/*.cpp")
-    list(FILTER LIB_SRC EXCLUDE REGEX "src/main\\.cpp$")
+    if (CRITERION_LIB)
+        file(GLOB_RECURSE LIB_SRC "src/*.cpp")
+        list(FILTER LIB_SRC EXCLUDE REGEX "src/main\\.cpp$")
+        file(GLOB_RECURSE TEST_SRC "tests/*.cpp")
 
-    file(GLOB_RECURSE TEST_SRC "tests/*.cpp")
+        add_executable(unit_tests EXCLUDE_FROM_ALL ${LIB_SRC} ${TEST_SRC})
 
-    add_executable(unit_tests ${LIB_SRC} ${TEST_SRC})
-    target_compile_options(unit_tests PRIVATE -Wall -Wextra --coverage)
-    target_link_options(unit_tests PRIVATE --coverage)
-    target_include_directories(unit_tests PRIVATE include src)
-    target_link_libraries(unit_tests ${CRITERION_LIB})
+        target_compile_options(unit_tests PRIVATE -Wall -Wextra --coverage)
+        target_link_options(unit_tests PRIVATE --coverage)
+        target_include_directories(unit_tests PRIVATE include src)
+        target_link_libraries(unit_tests ${CRITERION_LIB})
 
-    add_test(NAME unit_tests COMMAND unit_tests)
-else ()
-    message(STATUS "Criterion not found, unit tests will not be built.")
+        add_test(NAME unit_tests COMMAND unit_tests)
+    else ()
+        message(WARNING "Criterion not found, unit tests will not be built.")
+    endif ()
 endif ()
